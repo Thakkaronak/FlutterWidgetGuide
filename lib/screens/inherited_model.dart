@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -15,17 +16,24 @@ class _InheritedModelWidgetState extends State<InheritedModelWidget> {
   Color _colorTwo = Utils.getRandomColor();
 
   @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:Text(
-              'InheritedModel Widget',
-              style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: Utils.ubuntuRegularFont),
-            ),
+        title: Text(
+          'InheritedModel Widget',
+          style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: Utils.ubuntuRegularFont),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.code),
@@ -66,22 +74,22 @@ class _InheritedModelWidgetState extends State<InheritedModelWidget> {
                   Container(
                     margin: EdgeInsets.all(16.0),
                     child: RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.black87,
+                      textColor: Theme.of(context).primaryColor,
+                      color: Theme.of(context).backgroundColor,
                       onPressed: () => setState(() {
-                            _colorOne = Utils.getRandomColor();
-                          }),
+                        _colorOne = Utils.getRandomColor();
+                      }),
                       child: Text('RESET Child 1'),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.all(16.0),
                     child: RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.black87,
+                      textColor: Theme.of(context).primaryColor,
+                      color: Theme.of(context).backgroundColor,
                       onPressed: () => setState(() {
-                            _colorTwo = Utils.getRandomColor();
-                          }),
+                        _colorTwo = Utils.getRandomColor();
+                      }),
                       child: Text('RESET Child 2'),
                     ),
                   ),
@@ -110,7 +118,7 @@ class AncestorWidget extends InheritedModel<String> {
     return InheritedModel.inheritFrom<AncestorWidget>(context, aspect: aspect);
   }
 
-  ///Runs once for reach widget to determine if that widget should be rebuild
+  ///Runs once for each widget to determine if that widget should be rebuild
   ///Checks the aspect for a dependent widget and returns true if that
   ///widget should be rebuild depending on a certain condition.
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -12,6 +13,13 @@ class PositionedWidget extends StatefulWidget {
 class _PositionedWidgetState extends State<PositionedWidget> {
   var _topPosition = 20.0;
   var _leftPosition = 20.0;
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +37,11 @@ class _PositionedWidgetState extends State<PositionedWidget> {
           IconButton(
             icon: Icon(Icons.code),
             onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CodeScreen(code: Code.positionedCode),
-                  ),
-                ),
+              context,
+              MaterialPageRoute(
+                builder: (context) => CodeScreen(code: Code.positionedCode),
+              ),
+            ),
           )
         ],
       ),

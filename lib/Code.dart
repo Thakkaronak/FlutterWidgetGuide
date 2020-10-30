@@ -5287,4 +5287,3893 @@ class Code {
         );
       }
     }''';
+
+  static const String reorderableListviewCode = ''' 
+    class ReorderableListViewWidget extends StatefulWidget {
+      @override
+      _ReorderableListViewWidgetState createState() =>
+          _ReorderableListViewWidgetState();
+    }
+    
+    class _ReorderableListViewWidgetState extends State<ReorderableListViewWidget> {
+      final List _items = <String>[
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+      ];
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ReorderableListView Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+          ),
+          body: ReorderableListView(
+            children: <Widget>[
+              for (final item in _items)
+                Container(
+                  width: double.infinity,
+                  height: 100.0,
+    
+                  /// Unique key for each item so that reorderable list can
+                  /// identify them
+                  key: ValueKey(item),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Colors.black26,
+                        width: 0.5,
+                      ),
+                      bottom: BorderSide(
+                        color: Colors.black26,
+                        width: 0.5,
+                      ),
+                    ),
+                  ),
+                  child: Center(
+                    child: ListTile(
+                      title: Text("Item item"),
+                      leading: Icon(
+                        Icons.drag_handle,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                  ),
+                )
+            ],
+            header: Padding(
+              padding: const EdgeInsets.only(
+                  top: 16.0, bottom: 24.0, left: 16.0, right: 16.0),
+              child: Text(
+                "This is an optional header. Long press and drag any item"
+                " below to move it",
+                textAlign: TextAlign.center,
+              ),
+            ),
+            onReorder: (oldIndex, newIndex) {
+              setState(
+                () {
+                  if (newIndex > oldIndex) {
+                    newIndex -= 1;
+                  }
+                  final item = _items.removeAt(oldIndex);
+                  _items.insert(newIndex, item);
+                },
+              );
+            },
+          ),
+        );
+      }
+    }''';
+
+  static const String animatedSwitcherCode = ''' 
+    class AnimatedSwitcherWidget extends StatefulWidget {
+      @override
+      _AnimatedSwitcherWidgetState createState() => _AnimatedSwitcherWidgetState();
+    }
+    
+    class _AnimatedSwitcherWidgetState extends State<AnimatedSwitcherWidget> {
+      bool switched = false;
+    
+      Widget _myAnimatedWidget = Container(
+        /// Add unique key to the widgets if they are same
+        /// In this case all 3 are Container Widgets
+        key: ValueKey(1),
+        width: 250.0,
+        height: 250.0,
+        color: Colors.blue,
+      );
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AnimatedSwitcher Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+          ),
+          body: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 24.0),
+                child: AnimatedSwitcher(
+                    duration: Duration(seconds: 1),
+    
+                    /// Various other animations available
+                    /// Here we have used the Scale animation
+                    /// By default, a FadeTransiton will appear between two widgets
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) =>
+                            ScaleTransition(
+                              child: child,
+                              scale: animation,
+                            ),
+                    child: _myAnimatedWidget),
+              ),
+            ],
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.green,
+            onPressed: () => setState(() {
+              _myAnimatedWidget = switched
+                  ? Container(
+                      /// Add unique key to the widgets if they are same
+                      key: ValueKey(2),
+                      width: 250.0,
+                      height: 250.0,
+                      color: Colors.blue,
+                    )
+                  : Container(
+                      /// Add unique key to the widgets if they are same
+                      key: ValueKey(3),
+                      width: 250.0,
+                      height: 250.0,
+                      color: Colors.red,
+                    );
+              switched ? switched = false : switched = true;
+            }),
+            icon: Icon(
+              Icons.swap_horiz,
+              color: Colors.white,
+            ),
+            label: Text(
+              "Switch Widgets",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String animatedPositionedCode = ''' 
+    class AnimatedPositionedWidget extends StatefulWidget {
+      @override
+      _AnimatedPositionedWidgetState createState() =>
+          _AnimatedPositionedWidgetState();
+    }
+    
+    class _AnimatedPositionedWidgetState extends State<AnimatedPositionedWidget> {
+      bool showMessage = false;
+      String appLink =
+          "https://play.google.com/store/apps/details?id=com.annsh.flutterwidgetguide";
+    
+      @override
+      void initState() {
+        super.initState();
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AnimatedPositioned Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Stack(
+              children: <Widget>[
+                Container(width: double.infinity, height: 250, color: Colors.blue),
+                Positioned(
+                    bottom: 50,
+                    right: 50,
+                    child: RichText(
+                        text: TextSpan(
+    
+                            /// A default style for all the TextSpans below.
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14.0,
+                              color: Colors.black,
+                              height: 1.5,
+                            ),
+                            children: <TextSpan>[
+                          TextSpan(
+                            text: "Click  ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.white,
+                                fontSize: 18.0),
+                          ),
+                          TextSpan(
+                              text: "here",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                  color: Colors.orange,
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 18.0),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  launch(appLink);
+                                }),
+                          TextSpan(
+                            text: "  to rate the App",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.white,
+                                fontSize: 18.0),
+                          ),
+                        ]))),
+                AnimatedPositioned(
+                  duration: Duration(milliseconds: 500),
+                  bottom: showMessage ? 100 : 20,
+                  right: 45,
+                  child: Container(
+                    width: 220,
+                    height: 100,
+                    color: Colors.blue[900],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          showMessage ? Icons.arrow_downward : Icons.arrow_upward,
+                          color: Colors.grey,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            showMessage
+                                ? "Click button below to move me DOWN"
+                                : "Click button below to move me UP",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.green,
+            onPressed: () => setState(() {
+              showMessage ? showMessage = false : showMessage = true;
+            }),
+            icon: Icon(
+              Icons.slideshow,
+              color: Colors.white,
+            ),
+            label: Text(
+              showMessage ? "Hide Message" : "Reveal Message",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String animatedPaddingCode = ''' 
+    class AnimatedPaddingWidget extends StatefulWidget {
+      @override
+      _AnimatedPaddingWidgetState createState() => _AnimatedPaddingWidgetState();
+    }
+    
+    class _AnimatedPaddingWidgetState extends State<AnimatedPaddingWidget> {
+      double padValue = 0;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AnimatedPadding Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+          ),
+          body: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                AnimatedPadding(
+                  padding: EdgeInsets.all(padValue),
+                  duration: Duration(seconds: 1),
+                  child: Container(height: 150, width: 150, color: Colors.blue),
+                ),
+                AnimatedPadding(
+                  padding: EdgeInsets.all(padValue),
+                  duration: Duration(seconds: 1),
+                  child: Container(height: 150, width: 150, color: Colors.red),
+                )
+              ],
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.green,
+            onPressed: () => setState(() {
+              padValue == 0 ? padValue = 10 : padValue = 0;
+            }),
+            label: Text(
+              padValue == 0 ? "Add Padding" : "Remove Padding",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String indexedStackCode = ''' 
+    class IndexedStackWidget extends StatefulWidget {
+      @override
+      _IndexedStackWidgetState createState() => _IndexedStackWidgetState();
+    }
+    
+    class _IndexedStackWidgetState extends State<IndexedStackWidget> {
+      int count = 0;
+      int _widgetIndex = 0;
+      Color _imageColor = Colors.blue;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'IndexedStack Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.indexedStackCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0, left: 12.0, right: 12.0),
+                child: Text(
+                  "The states of all the widgets will be maintained as you switch"
+                      "between the indexes in an Indexed Stack. Increase the count or "
+                      "change the Flutter logo color by tapping it to observe it.",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14.0,
+                      fontFamily: Utils.ubuntuRegularFont),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    /// 3 widgets stacked (Index 0, 1 & 2)
+                    /// State will be preserved while switching
+                    IndexedStack(
+                      index: _widgetIndex,
+                      children: <Widget>[
+                        Container(
+                          width: 250,
+                          height: 250,
+                          color: Colors.blue,
+                        ),
+                        Container(
+                          width: 250,
+                          height: 250,
+                          color: Colors.red,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "count",
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 48.0),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: RaisedButton(
+                                  onPressed: () =>
+                                      setState(() => count = count = count + 1),
+                                  color: Colors.black,
+                                  textColor: Colors.white,
+                                  child: Text("Press me"),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 250,
+                          height: 250,
+                          color: Colors.white,
+                          child: GestureDetector(
+                            child: FlutterLogo(
+                              duration: Duration(milliseconds: 500),
+                              colors: _imageColor,
+                              curve: Curves.easeInOut,
+                            ),
+                            onTap: () => setState(() => _imageColor == Colors.blue
+                                ? _imageColor = Colors.amber
+                                : _imageColor = Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () =>
+                        _widgetIndex == 0 ? null : setState(() => _widgetIndex = 0),
+                    color: _widgetIndex == 0 ? Colors.grey : Colors.blue,
+                    textColor: Colors.white,
+                    child: Text("Index 0"),
+                  ),
+                  RaisedButton(
+                    onPressed: () =>
+                        _widgetIndex == 1 ? null : setState(() => _widgetIndex = 1),
+                    color: _widgetIndex == 1 ? Colors.grey : Colors.blue,
+                    textColor: Colors.white,
+                    child: Text("Index 1"),
+                  ),
+                  RaisedButton(
+                    onPressed: () =>
+                        _widgetIndex == 2 ? null : setState(() => _widgetIndex = 2),
+                    color: _widgetIndex == 2 ? Colors.grey : Colors.blue,
+                    textColor: Colors.white,
+                    child: Text("Index 2"),
+                  ),
+                ],
+              )
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String semanticsCode = ''' 
+    class SemanticsWidget extends StatefulWidget {
+      @override
+      _SemanticsWidgetState createState() => _SemanticsWidgetState();
+    }
+    
+    class _SemanticsWidgetState extends State<SemanticsWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Semantics Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Center(
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      width: 300,
+                      height: 300,
+                      color: Colors.amber,
+                    ),
+                    Semantics(
+                      child: FlutterLogo(
+                        size: 250,
+                      ),
+                      label: "Flutter Logo",
+                      enabled: true,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Text(
+                  "If you enable Talkback feature from your devices Accessibility settings"
+                  "and click on the Flutter Logo, the device will announce whatever you have"
+                  "written on the label tag in Semantics widget",
+                  style:
+                      TextStyle(fontFamily: Utils.ubuntuRegularFont, fontSize: 16.0),
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String constrainedBoxCode = ''' 
+    class ConstrainedBoxWidget extends StatefulWidget {
+      @override
+      _ConstrainedBoxWidgetState createState() => _ConstrainedBoxWidgetState();
+    }
+    
+    class _ConstrainedBoxWidgetState extends State<ConstrainedBoxWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ConstrainedBox Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.animatedBuilderCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Stack(
+                children: <Widget>[
+                  ConstrainedBox(
+                    constraints: const BoxConstraints.expand(),
+                    child: const Card(
+                      color: Colors.blue,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'This card fill the parent because of BoxConstraints.expand()',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: Utils.ubuntuRegularFont,
+                            fontSize: 14.0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                  minHeight: 100, maxWidth: 100),
+                              child: const Card(
+                                color: Colors.yellow,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'This card has BoxConstraints(minHeight: 100, maxWidth: 100). So the text will not be'
+                                    ' clipped even if more characters are added..........',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: Utils.ubuntuRegularFont,
+                                      fontSize: 14.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                  maxHeight: 100, maxWidth: 200),
+                              child: const Card(
+                                color: Colors.amber,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'This card has BoxConstraints(maxHeight: 100, maxWidth: 200). So the text will be'
+                                    ' clipped after a few characters..........',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: Utils.ubuntuRegularFont,
+                                      fontSize: 14.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            ConstrainedBox(
+                              constraints: const BoxConstraints.tightForFinite(
+                                  width: 200, height: double.infinity),
+                              child: const Card(
+                                color: Colors.orange,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'This card has BoxConstraints.tightForFinite(width: 100, height: double.infinity)'
+                                    ' So the text will keep flowing vertically even if more characters are added.',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: Utils.ubuntuRegularFont,
+                                      fontSize: 14.0,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String stackCode = ''' 
+    class StackWidget extends StatefulWidget {
+      @override
+      _StackWidgetState createState() => _StackWidgetState();
+    }
+    
+    class _StackWidgetState extends State<StackWidget> {
+      AlignmentDirectional _alignment = AlignmentDirectional.center;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Stack Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.stackCode),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: ListView(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(18.0),
+                child: Center(
+                  child: Stack(
+                    overflow: Overflow.clip,
+                    alignment: _alignment,
+                    children: <Widget>[
+                      Container(
+                        width: 150,
+                        height: 150,
+                        color: Colors.red,
+                      ),
+                      Container(
+                        width: 120,
+                        height: 120,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        width: 85,
+                        height: 85,
+                        color: Colors.blue,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Center(
+                child: Container(
+                  margin: EdgeInsets.only(top: 24),
+                  child: Text(
+                    'Select Alignment',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: Utils.ubuntuRegularFont),
+                  ),
+                ),
+              ),
+              ///Container containing all the Radio buttons
+              Container(
+                margin: EdgeInsets.all(18),
+                child: Wrap(
+                  children: <Widget>[
+                    _OptionItem(AlignmentDirectional.topStart, _alignment, _onAlignmentChange, 'Top Start'),
+    
+                    _OptionItem(AlignmentDirectional.bottomEnd, _alignment, _onAlignmentChange, 'Bottom End'),
+    
+                    _OptionItem(AlignmentDirectional.center, _alignment, _onAlignmentChange, 'Center'),
+    
+                    _OptionItem(AlignmentDirectional.topCenter, _alignment, _onAlignmentChange, 'Top Center'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+      ///method called whenever you want to change alignment of stacked elements
+      _onAlignmentChange(AlignmentDirectional value) => setState(() {
+        _alignment = value;
+      });
+    
+    }
+    
+    class _OptionItem<T> extends StatelessWidget {
+      const _OptionItem(this.value, this.groupValue, this.onChanged, this.title);
+    
+      final String title;
+      final T value;
+      final T groupValue;
+      final ValueChanged<T> onChanged;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Radio<T>(
+                value: value,
+                groupValue: groupValue,
+                activeColor: Colors.lightBlue,
+                onChanged: onChanged
+            ),
+            GestureDetector(
+              onTap: () {
+                onChanged(value);
+              },
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: 14.0, fontFamily: Utils.ubuntuRegularFont),
+              ),
+            ),
+          ],
+        );
+      }
+    }''';
+
+  static const String animatedOpacityCode = ''' 
+    class AnimatedOpacityWidget extends StatefulWidget {
+      @override
+      _AnimatedOpacityWidgetState createState() => _AnimatedOpacityWidgetState();
+    }
+    
+    class _AnimatedOpacityWidgetState extends State<AnimatedOpacityWidget> {
+      double opacityLevel = 1.0;
+      String buttonText = "Fade Out";
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AnimatedOpacity Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.animatedOpacityCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  child: AnimatedOpacity(
+                    opacity: opacityLevel,
+                    duration: Duration(seconds: 1),
+                    child: FlutterLogo(),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(24),
+                  child: Text("Opacity Value - opacityLevel.toString()"),
+                ),
+                Container(
+                  child: RaisedButton(
+                    child: Text(buttonText),
+                    onPressed: _changeOpacity,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    
+      void _changeOpacity() {
+        setState(() {
+          opacityLevel = opacityLevel == 0 ? 1.0 : 0.0;
+          buttonText = buttonText == "Fade Out" ? "Fade In" : "Fade Out";
+        });
+      }
+    }''';
+
+  static const String fractionallySizedBoxCode = ''' 
+    class FractionallySizedBoxWidget extends StatefulWidget {
+      @override
+      _FractionallySizedBoxWidgetState createState() =>
+          _FractionallySizedBoxWidgetState();
+    }
+    
+    class _FractionallySizedBoxWidgetState
+        extends State<FractionallySizedBoxWidget> {
+      ///Initial Slider widget value
+      var _value = 0.50;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'FractionallySizedBox Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.fractionallySizedBoxCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Column(
+            children: <Widget>[
+              Flexible(
+                child: FractionallySizedBox(
+                  widthFactor: _value,
+                  heightFactor: 0.5,
+                  child: Container(
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 24.0),
+                child: Text("Width factor is : _value.abs()"),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 12.0),
+                child: Text("Covering (_value * 100).toStringAsFixed(0)% of device width"),
+              ),
+              ///Slider widget to set opacity value
+              Container(
+                margin: EdgeInsets.only(top: 24),
+                child: Slider(
+                  value: _value,
+    
+                  ///Color for active side of Slider
+                  activeColor: Colors.lightBlue,
+    
+                  ///Color for inactive side of Slider
+                  inactiveColor: Colors.lightBlue[50],
+    
+                  ///Minimum value of the slider
+                  min: 0.0,
+    
+                  ///Maximum value of the slider
+                  max: 1.0,
+    
+                  ///No.Of divisions from min to max value on the Slider
+                  divisions: 100,
+    
+                  ///Value indicator above the slider
+                  label: "_value.abs()",
+                  onChanged: (double value) {
+                    setState(() {
+                      _value = value;
+                    });
+                  },
+                ),
+              ),
+              Text('Drag to change width factor'),
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String listViewCode = ''' 
+    class ListViewWidget extends StatefulWidget {
+      @override
+      _ListViewWidgetState createState() => _ListViewWidgetState();
+    }
+    
+    class _ListViewWidgetState extends State<ListViewWidget> {
+      final List<String> entries = <String>[
+        'Item 1',
+        'Item 2',
+        'Item 3',
+        'Item 4',
+        'Item 5',
+        'Item 6',
+        'Item 7',
+        'Item 8',
+        'Item 9',
+        'Item 10',
+        'Item 11',
+        'Item 12',
+        'Item 13',
+        'Item 14',
+        'Item 15'
+      ];
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ListView Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.fractionallySizedBoxCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: ListView.separated(
+            padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
+            itemCount: entries.length,
+            reverse: false,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                color: Colors.blue[500],
+                child: ListTile(
+                  leading: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 48,
+                      height: 48,
+                      padding: EdgeInsets.symmetric(vertical: 4.0),
+                      alignment: Alignment.center,
+                      child: CircleAvatar(
+                        child: Icon(Icons.person),
+                        backgroundColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.more_vert,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    "Person index + 1",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    "entries[index]",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () => null,
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) => Divider(
+              thickness: 2,
+            ),
+          ),
+        );
+      }
+    }
+    ''';
+
+  static const String listTileCode = ''' 
+    class ListTileWidget extends StatefulWidget {
+      @override
+      _ListTileWidgetState createState() => _ListTileWidgetState();
+    }
+    
+    class _ListTileWidgetState extends State<ListTileWidget> {
+      final List<String> entries = <String>[
+        'Item 1',
+        'Item 2',
+        'Item 3',
+        'Item 4',
+        'Item 5',
+        'Item 6',
+        'Item 7',
+        'Item 8',
+        'Item 9',
+        'Item 10',
+        'Item 11',
+        'Item 12',
+        'Item 13',
+        'Item 14',
+        'Item 15'
+      ];
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ListTile Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.listTileCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: ListView.separated(
+            padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
+            itemCount: entries.length,
+            reverse: false,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                color: Colors.blue[500],
+                child: ListTile(
+                  leading: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 48,
+                      height: 48,
+                      padding: EdgeInsets.symmetric(vertical: 4.0),
+                      alignment: Alignment.center,
+                      child: CircleAvatar(
+                        child: Icon(Icons.person),
+                        backgroundColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.more_vert,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    "Person index + 1",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    "entries[index]",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () => null,
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) => Divider(
+              thickness: 2,
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String containerCode = ''' 
+    class ContainerWidget extends StatefulWidget {
+      @override
+      _ContainerWidgetState createState() => _ContainerWidgetState();
+    }
+    
+    class _ContainerWidgetState extends State<ContainerWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Container Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.containerCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                /// Simple Container
+                Container(
+                  margin: EdgeInsets.all(24.0),
+                  color: Colors.blue,
+                  child: Text(
+                    'Container',
+                    style: TextStyle(
+                        fontFamily: Utils.ubuntuRegularFont,
+                        color: Colors.white,
+                        fontSize: 16.0),
+                  ),
+                ),
+                /// Container with Padding
+                Container(
+                  padding: EdgeInsets.all(24.0),
+                  margin: EdgeInsets.all(24.0),
+                  color: Colors.blue,
+                  child: Text(
+                    'Container with padding',
+                    style: TextStyle(
+                        fontFamily: Utils.ubuntuRegularFont,
+                        color: Colors.white,
+                        fontSize: 16.0),
+                  ),
+                ),
+                /// Container with a Shape and border
+                Container(
+                  padding: EdgeInsets.all(12.0),
+                  margin: EdgeInsets.all(24.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Colors.amber[200],
+                    border: Border.all(color: Colors.blue, width: 3.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5.0),
+                    ),
+                  ),
+                  child: Text(
+                    'Container with shape',
+                    style: TextStyle(
+                        fontFamily: Utils.ubuntuRegularFont,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0),
+                  ),
+                ),
+                /// Container with a different shape
+                Container(
+                  padding: EdgeInsets.all(12.0),
+                  margin: EdgeInsets.all(24.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.amber[200],
+                  ),
+                  child: Text(
+                    'Container with shape',
+                    style: TextStyle(
+                        fontFamily: Utils.ubuntuRegularFont,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0),
+                  ),
+                ),
+                /// Container with fixed size
+                Container(
+                  margin: EdgeInsets.all(24.0),
+                  height: 100,
+                  width: 100,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Colors.amber[200],
+                  ),
+                  child: Text(
+                    'Container with size',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: Utils.ubuntuRegularFont,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0),
+                  ),
+                ),
+                /// Container with fixed size, rotated a bit
+                Container(
+                  margin: EdgeInsets.all(24.0),
+                  height: 100,
+                  width: 100,
+                  transform: Matrix4.rotationZ(0.15),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Colors.amber[200],
+                  ),
+                  child: Text(
+                    'Container with size rotated',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: Utils.ubuntuRegularFont,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String selectableTextCode = ''' 
+    class SelectableTextWidget extends StatefulWidget {
+      @override
+      _SelectableTextWidgetState createState() => _SelectableTextWidgetState();
+    }
+    
+    class _SelectableTextWidgetState extends State<SelectableTextWidget> {
+      Color bgColor = Colors.blue;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'SelectableText Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.selectableTextCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
+                  child: FlutterLogo(
+                    size: 100,
+                    colors: bgColor,
+                  ),
+                ),
+                /// Selectable text
+                Container(
+                  margin: EdgeInsets.all(24.0),
+                  child: SelectableText(
+                    "Long press to select this text.\nYou can tap the text to change the color of Flutter Logo above.",
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontFamily: Utils.ubuntuRegularFont,
+                    ),
+                    textAlign: TextAlign.center,
+                    onTap: () => setState(() {
+                      bgColor = bgColor == Colors.blue ? Colors.amber : Colors.blue;
+                    }),
+                  ),
+                ),
+    
+                /// A text field to let user paste the copied text
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue[300],
+                    borderRadius: BorderRadius.all(Radius.circular(32)),
+                  ),
+                  margin: EdgeInsets.only(left: 24.0, right: 24.0),
+                  child: TextField(
+                    style: TextStyle(color: Colors.amber),
+                    decoration: InputDecoration(
+                      hintStyle: TextStyle(fontSize: 14, color: Colors.grey[100]),
+                      hintText: 'Copy the text above and paste it here.',
+                      prefixIcon: Icon(
+                        Icons.content_paste,
+                        color: Colors.white,
+                      ),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(20),
+                    ),
+                    cursorColor: Colors.amber,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String dataTableWidgetCode = ''' 
+    class DataTableWidget extends StatefulWidget {
+      @override
+      _DataTableWidgetState createState() => _DataTableWidgetState();
+    }
+    
+    class _DataTableWidgetState extends State<DataTableWidget> {
+    
+      /// True since we want our list to be in ascending order initially
+      bool sort = true;
+    
+      List<int> num = [1, 2, 3, 4, 5, 6];
+      List<String> listItems = [
+        'Grocries',
+        'Electronics',
+        'Clothes',
+        'Office Supplies',
+        'Veggies',
+        'Dairy'
+      ];
+    
+      /// Method called when the header of 1st column is clicked
+      onSort(int columnIndex, bool ascending) {
+        if (columnIndex == 0) {
+          if (ascending) {
+            /// Sort the list in ascending order
+            num.sort((a, b) => a.compareTo(b));
+            listItems = listItems.reversed.toList();
+          } else {
+            /// Sort the list in descending order
+            num.sort((b, a) => a.compareTo(b));
+            listItems = listItems.reversed.toList();
+          }
+        }
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'DataTable Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.dataTableWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Flex(
+            direction: Axis.horizontal,
+            children: <Widget>[
+              /// To make the datatable take all the available space
+              Expanded(
+                /// DataTable wrapped inside Scroll View for smaller devices
+                /// or landscape view
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: DataTable(
+                    sortColumnIndex: 0,
+                    sortAscending: sort,
+                    columns: [
+                      DataColumn(
+                          label: Text('S.No'),
+                          numeric: true,
+    
+                          /// Triggered when you click the column header
+                          onSort: (columnIndex, ascending) {
+                            setState(() {
+                              /// To control the value of "sortAscending" for the
+                              /// DataTable
+                              sort = !sort;
+                            });
+    
+                            /// Call the onSort method with logic to sort both
+                            /// the columns together
+                            onSort(columnIndex, ascending);
+                          }),
+                      DataColumn(label: Text('Items')),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(Text('num[0]')),
+                          DataCell(Text('listItems[0]')),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('num[1]')),
+                          DataCell(Text('listItems[1]')),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('num[2]')),
+                          DataCell(Text('listItems[2]')),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('num[3]')),
+                          DataCell(Text('listItems[3]')),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('num[4]')),
+                          DataCell(Text('listItems[4]')),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('num[5]')),
+                          DataCell(Text('listItems[5]')),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String sliderWidgetCode = ''' 
+    class SliderWidget extends StatefulWidget {
+      @override
+      _SliderWidgetState createState() => _SliderWidgetState();
+    }
+    
+    class _SliderWidgetState extends State<SliderWidget> {
+    
+      ///Initial Slider widget value
+      var _value = 1.0;
+    
+      var _cupertinoValue = 1.0;
+    
+      var _rangeValues = RangeValues(30, 60);
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Slider Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.sliderWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Center(child: Text("Slider")),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Slider(
+                      value: _value,
+    
+                      ///Color for active side of Slider
+                      activeColor: Colors.lightBlue,
+    
+                      ///Color for inactive side of Slider
+                      inactiveColor: Colors.lightBlue[50],
+    
+                      ///Minimum value of the slider
+                      min: 1.0,
+    
+                      ///Maximum value of the slider
+                      max: 100.0,
+    
+                      ///No.Of divisions from min to max value on the Slider
+                      divisions: 100,
+    
+                      ///Value indicator above the slider
+                      label: "_value.round()",
+                      onChanged: (double value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Center(child: Text("Range Slider")),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RangeSlider(
+                      values: _rangeValues,
+    
+                      ///Color for active side of Slider
+                      activeColor: Colors.lightBlue,
+    
+                      ///Color for inactive side of Slider
+                      inactiveColor: Colors.lightBlue[50],
+    
+                      ///Minimum value of the slider
+                      min: 1.0,
+    
+                      ///Maximum value of the slider
+                      max: 100.0,
+    
+                      ///No.Of divisions from min to max value on the Slider
+                      divisions: 100,
+    
+                      ///Value indicator above the slider
+                      labels: RangeLabels("_rangeValues.start.round()", "_rangeValues.end.round()"),
+                      onChanged: (RangeValues values) {
+                        setState(() {
+                          _rangeValues = values;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Center(child: Text("Cupertino Slider")),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CupertinoSlider(
+                      value: _cupertinoValue,
+    
+                      ///Color for active side of Slider
+                      activeColor: Colors.lightBlue,
+    
+                      ///Minimum value of the slider
+                      min: 1.0,
+    
+                      ///Maximum value of the slider
+                      max: 100.0,
+    
+                      ///No.Of divisions from min to max value on the Slider
+                      divisions: 100,
+    
+                      thumbColor: Colors.lightBlue,
+    
+                      onChanged: (double value) {
+                        setState(() {
+                          _cupertinoValue = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String alertDialogWidgetCode = ''' 
+    class AlertDialogWidget extends StatefulWidget {
+      @override
+      _AlertDialogWidgetState createState() => _AlertDialogWidgetState();
+    }
+    
+    class _AlertDialogWidgetState extends State<AlertDialogWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AlertDialog Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.sliderWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: RaisedButton(
+                      child: Text("Cupertino"),
+                      onPressed: () => {
+                        showDialog(
+                          context: context,
+                          builder: (_) => CupertinoAlertDialog(
+                            title: Text("Accept Changes?"),
+                            content: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Choose one"),
+                            ),
+                            actions: <Widget>[
+                              CupertinoDialogAction(
+                                child: Text("No"),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                              CupertinoDialogAction(
+                                child: Text("Yes"),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                            ],
+                          ),
+                        ),
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: RaisedButton(
+                      child: Text("Material"),
+                      onPressed: () => {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            elevation: 24.0,
+                            backgroundColor: Colors.white,
+                            title: Text("Accept Changes?"),
+                            content: Text("Choose one"),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text("No"),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                              FlatButton(
+                                child: Text("Yes"),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                            ],
+                          ),
+                        ),
+                      },
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String animatedCrossFadeWidgetCode = ''' 
+    class AnimatedCrossFadeWidget extends StatefulWidget {
+      @override
+      _AnimatedCrossFadeWidgetState createState() =>
+          _AnimatedCrossFadeWidgetState();
+    }
+    
+    class _AnimatedCrossFadeWidgetState extends State<AnimatedCrossFadeWidget> {
+      var crossFadeView = CrossFadeState.showFirst;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AnimatedCrossFade Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.animatedCrossFadeWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                AnimatedCrossFade(
+                  crossFadeState: crossFadeView == CrossFadeState.showFirst
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: Duration(milliseconds: 1000),
+                  firstChild: Container(
+                    width: 300,
+                    height: 300,
+                    color: Colors.lightBlue,
+                    child: Center(
+                      child: Text(
+                        "Flutter Widget Guide",
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
+                    ),
+                  ),
+                  secondChild: Container(
+                    width: 300,
+                    height: 300,
+                    color: Colors.lightBlue,
+                    child: Center(
+                      child: Text(
+                        "Is the best :)",
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: RaisedButton(
+                    child: Text("Cross Fade"),
+                    onPressed: () => setState(() {
+                      crossFadeView = crossFadeView == CrossFadeState.showFirst
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst;
+                    }),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String draggableScrollableSheetWidgetCode = ''' 
+    class DraggableScrollableSheetWidget extends StatefulWidget {
+      @override
+      _DraggableScrollableSheetWidgetState createState() =>
+          _DraggableScrollableSheetWidgetState();
+    }
+    
+    class _DraggableScrollableSheetWidgetState
+        extends State<DraggableScrollableSheetWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'DraggableScrollableSheet Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.draggableScrollableSheetWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Stack(
+            children: <Widget>[
+              Container(
+                color: Colors.black87,
+                child: Center(
+                  child: Text(
+                    "Swipe up from the bottom to drag scrollable sheet",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: DraggableScrollableSheet(
+                  maxChildSize: 0.9,
+                  initialChildSize: 0.2,
+                  minChildSize: 0.2,
+                  builder: (context, scrollController) {
+                    return Container(
+                      child: ListView.builder(
+                        controller: scrollController,
+                        itemCount: 25,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(title: Text('Item index'));
+                        },
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.white,
+    
+                        /// To set a shadow behind the parent container
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(0.0, -2.0),
+                            blurRadius: 4.0,
+                          ),
+                        ],
+    
+                        /// To set radius of top left and top right
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(24.0),
+                          topRight: Radius.circular(24.0),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String colorFilteredWidgetCode = ''' 
+    class ColorFilteredWidget extends StatefulWidget {
+      @override
+      _ColorFilteredWidgetState createState() => _ColorFilteredWidgetState();
+    }
+    
+    class _ColorFilteredWidgetState extends State<ColorFilteredWidget> {
+      var _blendmode = BlendMode.darken;
+      var _blendmode1 = BlendMode.softLight;
+      var _blendmode2 = BlendMode.colorBurn;
+      var _blendmode3 = BlendMode.difference;
+      var _blendmode4 = BlendMode.multiply;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ColorFiltered Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.colorFilteredWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(18),
+                  child: Center(
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(Colors.blue, _blendmode),
+                      child: Image.asset('assets/images/dp.png'),
+                    ),
+                  ),
+                ),
+                divider(context),
+                Container(
+                  margin: EdgeInsets.only(left: 12, right: 12),
+                  child: Wrap(
+                    children: <Widget>[
+                      _OptionItem(_blendmode1, _blendmode, _onBlendModeChanged,
+                          'BlendMode.softLight'),
+                      _OptionItem(_blendmode2, _blendmode, _onBlendModeChanged,
+                          'BlendMode.colorBurn'),
+                      _OptionItem(_blendmode3, _blendmode, _onBlendModeChanged,
+                          'BlendMode.difference'),
+                      _OptionItem(_blendmode4, _blendmode, _onBlendModeChanged,
+                          'BlendMode.multiply'),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    
+      _onBlendModeChanged(BlendMode blendMode) => setState(() {
+            _blendmode = blendMode;
+          });
+    }
+    
+    class _OptionItem<T> extends StatelessWidget {
+      const _OptionItem(this.value, this.groupValue, this.onChanged, this.title);
+    
+      final String title;
+      final T value;
+      final T groupValue;
+      final ValueChanged<T> onChanged;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Radio<T>(
+                value: value,
+                groupValue: groupValue,
+                activeColor: Colors.lightBlue,
+                onChanged: onChanged),
+            GestureDetector(
+              onTap: () {
+                onChanged(value);
+              },
+              child: Text(
+                title,
+                style:
+                    TextStyle(fontSize: 14.0, fontFamily: Utils.ubuntuRegularFont),
+              ),
+            ),
+          ],
+        );
+      }
+    }
+    
+    Container divider(BuildContext context) => Container(
+          child: Divider(),
+          margin: EdgeInsets.only(left: 10, right: 10, top: 14),
+        );''';
+
+  static const String toggleButtonsWidgetCode = ''' 
+    class ToggleButtonsWidget extends StatefulWidget {
+      @override
+      _ToggleButtonsWidgetState createState() => _ToggleButtonsWidgetState();
+    }
+    
+    class _ToggleButtonsWidgetState extends State<ToggleButtonsWidget> {
+      var _fontWeight = FontWeight.normal;
+      var _fontStyle = FontStyle.normal;
+      var _textAlign = TextAlign.left;
+    
+      /// To manage selection states of 1st toggle buttons group
+      List<bool> _selections1 = List.generate(2, (_) => false);
+    
+      /// To manage selection states of 2nd toggle buttons group
+      List<bool> _selections2 = List.generate(3, (_) => false);
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ToggleButtons Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.toggleButtonsWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: _fontWeight,
+                      fontStyle: _fontStyle,
+                    ),
+                    textAlign: _textAlign,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue[200], width: 1.0),
+                      ),
+                      hintStyle: TextStyle(fontSize: 16, color: Colors.grey[400]),
+                      hintText: 'Type something here...',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(),
+                      ),
+                      contentPadding: EdgeInsets.all(20),
+                    ),
+                    cursorColor: Colors.grey,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    /// First group of ToggleButtons
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ToggleButtons(
+                        selectedBorderColor: Colors.blue[200],
+                        children: <Widget>[
+                          Icon(Icons.format_bold),
+                          Icon(Icons.format_italic)
+                        ],
+    
+                        /// To manage the selection states of options
+                        isSelected: _selections1,
+                        onPressed: (int index) {
+                          setState(() {
+                            /// Set true/False to manage selection states
+                            _selections1[index] = !_selections1[index];
+    
+                            /// Controlling what happens when the Buttons
+                            /// are selected based on the the index
+                            if (index == 0) {
+                              _fontWeight = _fontWeight == FontWeight.normal
+                                  ? FontWeight.bold
+                                  : FontWeight.normal;
+                            } else if (index == 1) {
+                              _fontStyle = _fontStyle == FontStyle.normal
+                                  ? FontStyle.italic
+                                  : FontStyle.normal;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+    
+                    /// Second group of ToggleButtons
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ToggleButtons(
+                        selectedBorderColor: Colors.blue[200],
+                        children: <Widget>[
+                          Icon(Icons.format_align_center),
+                          Icon(Icons.format_align_left),
+                          Icon(Icons.format_align_right),
+                        ],
+                        isSelected: _selections2,
+                        onPressed: (int index) {
+                          setState(() {
+                            if (index == 0) {
+                              _selections2[0] = !_selections2[0];
+                              _selections2[1] = false;
+                              _selections2[2] = false;
+                              _textAlign = _selections2[0]
+                                  ? TextAlign.center
+                                  : TextAlign.left;
+                            } else if (index == 1) {
+                              _selections2[0] = false;
+                              _selections2[1] = !_selections2[1];
+                              _selections2[2] = false;
+                              _textAlign =
+                                  _selections2[1] ? TextAlign.left : TextAlign.left;
+                            } else if (index == 2) {
+                              _selections2[0] = false;
+                              _selections2[1] = false;
+                              _selections2[2] = !_selections2[2];
+                              _textAlign = _selections2[2]
+                                  ? TextAlign.right
+                                  : TextAlign.left;
+                            }
+                          });
+                        },
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String cupertinoActionSheetWidgetCode = ''' 
+    class CupertinoActionSheetWidget extends StatefulWidget {
+      @override
+      _CupertinoActionSheetWidgetState createState() =>
+          _CupertinoActionSheetWidgetState();
+    }
+    
+    class _CupertinoActionSheetWidgetState
+        extends State<CupertinoActionSheetWidget> {
+      GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'CupertinoActionSheet Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.cupertinoActionSheetWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: RaisedButton(
+              color: Theme.of(context).backgroundColor,
+              child: Text(
+                "Show sheet",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+              onPressed: () => {
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) => CupertinoActionSheet(
+                    title: Text(
+                      "Things",
+                      style: TextStyle(color: Theme.of(context).backgroundColor),
+                    ),
+                    message: Text(
+                      "Small list of things to do",
+                      style: TextStyle(color: Theme.of(context).backgroundColor),
+                    ),
+                    actions: <Widget>[
+                      CupertinoActionSheetAction(
+                        child: Text(
+                          "Add",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                        onPressed: () => Navigator.of(context).pop("Add"),
+                        isDefaultAction: true,
+                      ),
+                      CupertinoActionSheetAction(
+                        child: Text(
+                          "Delete",
+                          style: TextStyle(color: Theme.of(context).errorColor),
+                        ),
+                        onPressed: () => Navigator.of(context).pop("Delete"),
+                        isDestructiveAction: true,
+                      )
+                    ],
+                    cancelButton: CupertinoActionSheetAction(
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      onPressed: () => Navigator.of(context).pop("Cancel"),
+                      isDestructiveAction: true,
+                    ),
+                  ),
+    
+                  ///Getting the chosen option value from sheet here
+                ).then(
+                  (option) {
+                    if (option != null) {
+                      _scaffoldKey.currentState.showSnackBar(
+                        SnackBar(
+                          content: Text("Chosen option is - option"),
+                          duration: Duration(milliseconds: 1000),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              },
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String tweenAnimationBuilderWidgetCode = ''' 
+    class TweenAnimationBuilderWidget extends StatefulWidget {
+      @override
+      _TweenAnimationBuilderWidgetState createState() =>
+          _TweenAnimationBuilderWidgetState();
+    }
+    
+    class _TweenAnimationBuilderWidgetState
+        extends State<TweenAnimationBuilderWidget> {
+      GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'TweenAnimationBuilder Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.tweenAnimationBuilderWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: TweenAnimationBuilder<Color>(
+              duration: const Duration(seconds: 3),
+    
+              ///Values for the Animation
+              ///Type of tween (here: Color) should match the second parameter
+              ///of the builder and the Class type parameter(if specified)
+              tween: ColorTween(begin: Colors.yellow, end: Colors.purple),
+    
+              /// Added child here as a performance optimization. Just so that
+              /// flutter does not build the entire widget tree during the animation
+              child: FlutterLogo(
+                size: 200,
+                colors: Colors.yellow,
+              ),
+              builder: (BuildContext _, Color value, Widget child) {
+                return ColorFiltered(
+                  child: child,
+                  colorFilter: ColorFilter.mode(value, BlendMode.modulate),
+                );
+              },
+              onEnd: () => _scaffoldKey.currentState.showSnackBar(
+                SnackBar(
+                  content: Text("Done with the Animation"),
+                  duration: Duration(milliseconds: 3000),
+                ),
+              ),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String imageWidgetCode = ''' 
+    class ImageWidget extends StatefulWidget {
+      @override
+      _ImageWidgetState createState() => _ImageWidgetState();
+    }
+    
+    class _ImageWidgetState extends State<ImageWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Image Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.imageWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: WillPopScope(
+            child: SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        'assets/images/dp.png',
+                        width: 150,
+                        height: 150,
+                        //Other available properties -
+                        //color: Colors.purple,
+                        //colorBlendMode: BlendMode.difference,
+                        //fit: BoxFit.cover,
+                        //semanticLabel: "Display Image",
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.network(
+                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                        width: 150,
+                        height: 150,
+                        loadingBuilder: (context, child, progress) {
+                          return progress == null
+                              ? child
+                              : Container(
+                                  width: 150,
+                                  height: 150,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.blue),
+                                    ),
+                                  ),
+                                );
+                        },
+                      ),
+                    )
+    
+                    //Other Image sources -
+    
+                    //Image.file('path/to/imageSrc.png');
+    
+                    //Image.memory(bytes);
+                  ],
+                ),
+              ),
+            ),
+            onWillPop: _willPopCallback,
+          ),
+        );
+      }
+    }
+    
+    Future<bool> _willPopCallback() async {
+      ///clear image cache and exit screen
+      ///this is done so that the image loads every time you open the
+      ///screen. (it is cached otherwise)
+      painting.imageCache.clear();
+      return true; // return true if the route to be popped
+    }''';
+
+  static const String tabsWidgetCode = ''' 
+    class TabsWidget extends StatefulWidget {
+      @override
+      _TabsWidgetState createState() => _TabsWidgetState();
+    }
+    
+    class _TabsWidgetState extends State<TabsWidget> {
+      final List<Tab> myTabs = <Tab>[
+        Tab(text: "Tab 1", icon: Icon(Icons.looks_one)),
+        Tab(text: "Tab 2", icon: Icon(Icons.looks_two)),
+      ];
+    
+      @override
+      Widget build(BuildContext context) {
+        //Wrap everything in DefaultTabController
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                'Tabs Widget',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: Utils.ubuntuRegularFont),
+              ),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.code),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CodeScreen(code: Code.tabsWidgetCode),
+                    ),
+                  ),
+                )
+              ],
+              //Specify the tabs for your view
+              bottom: TabBar(
+                tabs: myTabs,
+                indicatorColor: Theme.of(context).backgroundColor,
+              ),
+            ),
+            //Provide each tab with its own content
+            body: TabBarView(
+              children: myTabs.map((Tab tab) {
+                return Center(
+                  child: Text(
+                    'This is the tab.text',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String drawerWidgetCode = ''' 
+    class DrawerWidget extends StatefulWidget {
+      @override
+      _DrawerWidgetState createState() => _DrawerWidgetState();
+    }
+    
+    class _DrawerWidgetState extends State<DrawerWidget> {
+      GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+    
+      @override
+      void initState() {
+        //Hide banner ad if it isn't already hidden
+        Ads.hideBannerAd();
+        super.initState();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Drawer Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.drawerWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          drawer: Drawer(child: getDrawerContent(context)),
+          endDrawer: Drawer(child: getDrawerContent(context)),
+          body: Center(
+            child: Container(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      child: Text('Open Drawer (from left)'),
+                      color: Theme.of(context).backgroundColor,
+                      textColor: Theme.of(context).accentColor,
+                      onPressed: () => _scaffoldKey.currentState.openDrawer(),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      child: Text('Open Drawer (from right)'),
+                      color: Theme.of(context).backgroundColor,
+                      textColor: Theme.of(context).accentColor,
+                      onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+    
+      Widget getDrawerContent(BuildContext context) {
+        return ListView(
+          children: <Widget>[
+            DrawerHeader(
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              child: Container(
+                color: Colors.blue,
+                child: Center(
+                  child: Text(
+                    "Drawer Header",
+                    style: TextStyle(color: Theme.of(context).accentColor),
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text("List item 1"),
+            ),
+            ListTile(
+              title: Text("List item 2"),
+            ),
+            ListTile(
+              title: Text("List item 3"),
+            ),
+            ListTile(
+              title: Text("List item 4"),
+            ),
+            Center(
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.blue, width: 1, style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(50)),
+                child: Text("Click to dismiss"),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            )
+          ],
+        );
+      }
+    }
+    ''';
+
+  static const String snackBarWidgetCode = ''' 
+    class SnackBarWidget extends StatefulWidget {
+      @override
+      _SnackBarWidgetState createState() => _SnackBarWidgetState();
+    }
+    
+    class _SnackBarWidgetState extends State<SnackBarWidget> {
+      GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+    
+      @override
+      void initState() {
+        //Hide banner ad if it isn't already hidden
+        Ads.hideBannerAd();
+        super.initState();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'SnackBar Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.snackBarWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    child: Text('Show simple SnackBar'),
+                    color: Theme.of(context).backgroundColor,
+                    textColor: Theme.of(context).accentColor,
+                    onPressed: () => _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        duration: Duration(milliseconds: 500),
+                        content: Text("Simple SnackBar"),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    child: Text('Show elevated SnackBar'),
+                    color: Theme.of(context).backgroundColor,
+                    textColor: Theme.of(context).accentColor,
+                    onPressed: () => _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        duration: Duration(milliseconds: 500),
+                        elevation: 6.0,
+                        behavior: SnackBarBehavior.floating,
+                        content: Text("Elevated SnackBar"),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(
+                    child: Text('Show custom layout SnackBar'),
+                    color: Theme.of(context).backgroundColor,
+                    textColor: Theme.of(context).accentColor,
+                    onPressed: () => _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        duration: Duration(milliseconds: 500),
+                        elevation: 6.0,
+                        behavior: SnackBarBehavior.floating,
+                        content: Row(
+                          children: <Widget>[
+                            Icon(Icons.thumb_up),
+                            SizedBox(width: 20.0),
+                            Expanded(
+                              child: Text("Hello!"),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    }''';
+  static const String listWheelScrollViewWidgetCode = ''' 
+    class ListWheelScrollViewWidget extends StatefulWidget {
+      @override
+      _ListWheelScrollViewWidgetState createState() =>
+          _ListWheelScrollViewWidgetState();
+    }
+    
+    class _ListWheelScrollViewWidgetState extends State<ListWheelScrollViewWidget> {
+      ///Initial Slider widget value
+      var _value = 0.0;
+    
+      final List<Widget> entries = List<Widget>.generate(
+        15,
+        (i) => Card(
+          color: Utils.getRandomColor(),
+          child: Center(
+            child: Text(
+              "Item i + 1",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      );
+    
+      @override
+      void initState() {
+        //Hide banner ad if it isn't already hidden
+        Ads.hideBannerAd();
+        super.initState();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ListWheelScrollView Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.listWheelScrollViewWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Flexible(
+                flex: 8,
+                child: ListWheelScrollView(
+                  children: entries,
+                  itemExtent: 100,
+                  offAxisFraction: _value,
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Center(
+                  child: Text(
+                    "Drag to change offAxisFraction value",
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Slider(
+                  value: _value,
+    
+                  ///Color for active side of Slider
+                  activeColor: Colors.lightBlue,
+    
+                  ///Color for inactive side of Slider
+                  inactiveColor: Colors.lightBlue[50],
+    
+                  ///Minimum value of the slider
+                  min: -1.0,
+    
+                  ///Maximum value of the slider
+                  max: 1.0,
+    
+                  ///No.Of divisions from min to max value on the Slider
+                  divisions: 100,
+    
+                  ///Value indicator above the slider
+                  label: "_value.toStringAsFixed(2)",
+                  onChanged: (double value) {
+                    setState(
+                      () {
+                        _value = value;
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    }''';
+  static const String shaderMaskWidgetCode = ''' 
+    class ShaderMaskWidget extends StatefulWidget {
+      @override
+      _ShaderMaskWidgetState createState() => _ShaderMaskWidgetState();
+    }
+    
+    class _ShaderMaskWidgetState extends State<ShaderMaskWidget> {
+    
+      Map<int, Color> color =
+      {
+        50:Color.fromRGBO(255,255,255, .1),
+        100:Color.fromRGBO(255,255,255, .2),
+        200:Color.fromRGBO(255,255,255, .3),
+        300:Color.fromRGBO(255,255,255, .4),
+        400:Color.fromRGBO(255,255,255, .5),
+        500:Color.fromRGBO(255,255,255, .6),
+        600:Color.fromRGBO(255,255,255, .7),
+        700:Color.fromRGBO(255,255,255, .8),
+        800:Color.fromRGBO(255,255,255, .9),
+        900:Color.fromRGBO(255,255,255, 1),
+      };
+    
+      @override
+      void initState() {
+        //Hide banner ad if it isn't already hidden
+        Ads.hideBannerAd();
+        super.initState();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ShaderMask Widget',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CodeScreen(code: Code.shaderMaskWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: ShaderMask(
+                  shaderCallback: (bounds) => RadialGradient(
+                    center: Alignment.topLeft,
+                    radius: 1.0,
+                    colors: [Colors.yellow, Colors.deepOrange.shade900],
+                    tileMode: TileMode.mirror,
+                  ).createShader(bounds),
+                  ///Specified white here to get the ShaderMask effect
+                  child: const Text(
+                    'Flutter is hot!!',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: ShaderMask(
+                    shaderCallback: (bounds) => RadialGradient(
+                      center: Alignment.topLeft,
+                      radius: 1.0,
+                      colors: [Colors.yellow, Colors.deepOrange.shade900],
+                      tileMode: TileMode.mirror,
+                    ).createShader(bounds),
+                    ///Specified white here to get the ShaderMask effect
+                    child: FlutterLogo(
+                      colors: MaterialColor(0xffffffff, color),
+                      size: 150.0,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String notificationListenerCode = ''' 
+    class NotificationListenerWidget extends StatefulWidget {
+      @override
+      _NotificationListenerWidgetState createState() => _NotificationListenerWidgetState();
+    }
+    
+    class _NotificationListenerWidgetState extends State<NotificationListenerWidget> {
+      Color color = Colors.blue;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'NotificationListener Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.notificationListenerCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: NotificationListener<ColorNotification>(
+              child: ChangeColor(
+                bgColor: color,
+              ),
+    
+              ///Notification is received here whenever
+              onNotification: (notification) {
+                setState(() {
+                  color = notification.color;
+                });
+                return true;
+              },
+            ),
+          ),
+        );
+      }
+    }
+    
+    ///Child widget that will initiate a change to bubble up the parent
+    class ChangeColor extends StatelessWidget {
+      final Color bgColor;
+    
+      ChangeColor({this.bgColor});
+    
+      @override
+      Widget build(BuildContext context) {
+        return Center(
+          child: FlatButton(
+            color: bgColor,
+            child: Text("Click to change my color"),
+            onPressed: () {
+              final randomColor = Utils.getRandomColor();
+              ColorNotification(color: randomColor)..dispatch(context);
+            },
+          ),
+        );
+      }
+    }
+    
+    class ColorNotification extends Notification {
+      final Color color;
+    
+      const ColorNotification({this.color});
+    }''';
+
+  static const String builderCode = ''' 
+    class BuilderWidget extends StatefulWidget {
+      @override
+      _BuilderWidgetState createState() => _BuilderWidgetState();
+    }
+    
+    class _BuilderWidgetState extends State<BuilderWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Builder Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.builderCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Builder(
+              builder: (BuildContext context) {
+                return RaisedButton(
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  child: Text("Click me"),
+                  onPressed: () {
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content:
+                            Text("I was created using context of a builder and not a scaffold key"),
+                        action: SnackBarAction(
+                          textColor: Colors.yellow,
+                          label: 'OK',
+                          onPressed: () {
+                            Scaffold.of(context).hideCurrentSnackBar();
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String clipPathCode = ''' 
+    class ClipPathWidget extends StatefulWidget {
+      @override
+      _ClipPathWidgetState createState() => _ClipPathWidgetState();
+    }
+    
+    class _ClipPathWidgetState extends State<ClipPathWidget> {
+      Color bgColor = Colors.blue;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ClipPath Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.clipPathCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: ClipPath(
+              ///specify the clipper with path details here
+              clipper: DashClipper(),
+    
+              ///specify the view to be clipped here
+              child: GestureDetector(
+                child: BlueBox(200.0, bgColor),
+                onTap: () {
+                  setState(() {
+                    bgColor = Utils.getRandomColor();
+                  });
+                },
+              ),
+            ),
+          ),
+        );
+      }
+    }
+    
+    class BlueBox extends StatelessWidget {
+      final size;
+      final bgColor;
+    
+      BlueBox(this.size, this.bgColor);
+    
+      @override
+      Widget build(BuildContext context) {
+        return DecoratedBox(
+          decoration: BoxDecoration(color: bgColor),
+          child: SizedBox(
+            height: size,
+            width: size,
+          ),
+        );
+      }
+    }
+    
+    ///Code from the official documents
+    class DashClipper extends CustomClipper<Path> {
+      @override
+      Path getClip(Size size) {
+        Path path = Path();
+        path.lineTo(0.6929134, 72.083992);
+        path.relativeLineTo(9.7270346, -10.425198);
+        path.relativeLineTo(31.091862, 31.963253);
+        path.relativeLineTo(19.107612, -22.755906);
+        path.relativeLineTo(10.073494, -36.824146);
+        path.relativeLineTo(32.482934, -19.800526);
+        path.relativeLineTo(-6.2572174, -7.8162728);
+        path.relativeLineTo(25.711288, -0.17322826);
+        path.relativeLineTo(-6.603676, 7.989501);
+        path.relativeLineTo(17.88977, 3.301837);
+        path.relativeLineTo(30.225724, 18.23622);
+        path.relativeLineTo(9.02887, 18.587928);
+        path.relativeLineTo(27.443558, 7.6430436);
+        path.relativeLineTo(-27.27034, 6.425194);
+        path.relativeLineTo(0.87139892, 19.454071);
+        path.relativeLineTo(-11.464569, 22.57743);
+        path.relativeLineTo(1.9107666, 13.7217864);
+        path.relativeLineTo(14.939621, 2.6089172);
+        path.relativeLineTo(-19.627288, 4.5144348);
+        path.relativeLineTo(-4.519684, -19.800522);
+        path.relativeLineTo(-9.9002686, 15.112862);
+        path.relativeLineTo(-33.522308, 5.90551);
+        path.relativeLineTo(-30.918632, -13.375328);
+        path.relativeLineTo(-40.120736, -11.1181106);
+        path.relativeLineTo(-10.9448814, -13.02887);
+        path.lineTo(0.6929134, 72.083992);
+        path.close();
+    
+        return path;
+      }
+    
+      @override
+      bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+    }''';
+
+  static const String progressIndicatorCode = ''' 
+    class CircularProgressIndicatorWidget extends StatefulWidget {
+      @override
+      _CircularProgressIndicatorWidgetState createState() => _CircularProgressIndicatorWidgetState();
+    }
+    
+    class _CircularProgressIndicatorWidgetState extends State<CircularProgressIndicatorWidget>
+        with SingleTickerProviderStateMixin {
+      AnimationController _animationController;
+      Animation<Color> _colorTween;
+      var counterStream =
+          Stream<double>.periodic(Duration(milliseconds: 100), (x) => (x / 100).toDouble()).take(101);
+    
+      void initState() {
+        _animationController = AnimationController(
+          duration: Duration(milliseconds: 1800),
+          vsync: this,
+        );
+        _colorTween = _animationController.drive(ColorTween(begin: Colors.green, end: Colors.red));
+        _animationController.repeat();
+        super.initState();
+      }
+    
+      @override
+      void dispose() {
+        _animationController.dispose();
+        super.dispose();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ProgressIndicator Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.progressIndicatorCode),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ///CircularProgressIndicator with a value
+              StreamBuilder(
+                stream: counterStream,
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                      value: snapshot.data,
+                    ),
+                  );
+                },
+              ),
+    
+              ///CircularProgressIndicator with single color
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                ),
+              ),
+    
+              ///CircularProgressIndicator with dual color
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: CircularProgressIndicator(valueColor: _colorTween),
+              ),
+    
+              ///LinearProgressIndicator with dual color
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: LinearProgressIndicator(valueColor: _colorTween),
+              ),
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String dividerCode = ''' 
+    class DividerWidget extends StatefulWidget {
+      @override
+      _DividerWidgetState createState() => _DividerWidgetState();
+    }
+    
+    class _DividerWidgetState extends State<DividerWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Divider Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.dividerCode),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                color: Colors.orange,
+                height: 100.0,
+                width: 100.0,
+              ),
+              Divider(
+                height: 50,
+                thickness: 5,
+                color: Colors.blue,
+                indent: 10,
+                endIndent: 10,
+              ),
+              Container(
+                color: Colors.purple,
+                height: 100.0,
+                width: 100.0,
+              )
+            ],
+          ),
+        );
+      }
+    }''';
+
+  static const String ignorePointerCode = ''' 
+    class IgnorePointerWidget extends StatefulWidget {
+      @override
+      _IgnorePointerWidgetState createState() => _IgnorePointerWidgetState();
+    }
+    
+    class _IgnorePointerWidgetState extends State<IgnorePointerWidget> {
+      Color bgColor = Colors.blue;
+      String message = "Click me to change my color";
+      bool ignore = false;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'IgnorePointer Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.dividerCode),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: IgnorePointer(
+                  ignoring: ignore,
+                  child: GestureDetector(
+                    child: Container(
+                      height: 150.0,
+                      width: 150.0,
+                      color: bgColor,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Center(
+                          child: Text(
+                            message,
+                            style: TextStyle(color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        bgColor = Utils.getRandomColor();
+                      });
+                    },
+                  ),
+                ),
+              )
+            ],
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.blue,
+            onPressed: () {
+              setState(
+                () {
+                  ignore ? ignore = false : ignore = true;
+                  ignore
+                      ? message = "You cannot click me to change my color"
+                      : message = "Click me to change my color";
+                },
+              );
+            },
+            label: ignore ? Text("Enable click") : Text("Disable click"),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        );
+      }
+    }''';
+
+  static const String cupertinoActivityIndicatorCode = ''' 
+    class CupertinoActivityIndicatorWidget extends StatefulWidget {
+      @override
+      _CupertinoActivityIndicatorWidgetState createState() => _CupertinoActivityIndicatorWidgetState();
+    }
+    
+    class _CupertinoActivityIndicatorWidgetState extends State<CupertinoActivityIndicatorWidget> {
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'CupertinoActivityIndicator Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.cupertinoActivityIndicatorCode),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                ///Default indicator
+                CupertinoActivityIndicator(),
+                ///Default indicator with no animation
+                CupertinoActivityIndicator(
+                  animating: false,
+                ),
+                ///Default indicator with increased size
+                CupertinoActivityIndicator(
+                  radius: 20,
+                )
+              ],
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String clipOvalCode = ''' 
+    class ClipOvalWidget extends StatefulWidget {
+      @override
+      _ClipOvalWidgetState createState() => _ClipOvalWidgetState();
+    }
+    
+    class _ClipOvalWidgetState extends State<ClipOvalWidget> {
+      int number = 0;
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'ClipOval Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.clipOvalCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TweenAnimationBuilder(
+                  ///Rest the tween range on number change 
+                  tween: number.isEven
+                      ? Tween<double>(begin: 0.5, end: 1.0)
+                      : Tween<double>(begin: 1.0, end: 0.5),
+                  duration: const Duration(milliseconds: 1000),
+                  curve: Curves.easeOutCubic,
+                  builder: (context, tweenValue, child) {
+                    ///This will clip the chile i.e. the Yellow container
+                    return ClipOval(
+                      clipBehavior: Clip.antiAlias,
+                      ///Custom clipper here in which we pass the tweenvalue
+                      ///to behave as a radius and thus help modify the size of the 
+                      ///Rect in the clipper.
+                      clipper: MyCircleClipper(tweenValue),
+                      child: Transform.scale(
+                        scale: 2 - tweenValue,
+                        ///A simple way to rotate a widget
+                        child: Transform.rotate(
+                          child: child,
+                          angle: tweenValue + number/2,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 200.0,
+                    width: 200.0,
+                    color: Colors.yellow,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          size: 50,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
+                  onEnd: () {
+                    ///Update the number on every animation end
+                    setState(() {
+                      number++;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    }
+    
+    class MyCircleClipper extends CustomClipper<Rect> {
+      final double radius;
+    
+      MyCircleClipper(this.radius);
+    
+      @override
+      Rect getClip(Size size) {
+        ///Here size is the size of the widget over which this ClipOval is wrapped
+        ///So here, height and width are 200.0
+        var smaller = min(size.width, size.height);
+        return Rect.fromCenter(
+          center: size.center(Offset.zero),
+          width: smaller * radius,
+          height: smaller * radius,
+        );
+      }
+    
+      @override
+      bool shouldReclip(MyCircleClipper oldClipper) {
+        return radius != oldClipper.radius;
+      }
+    }''';
+
+  static const String animatedWidgetCode = ''' 
+    class AnimatedWidgett extends StatefulWidget {
+      @override
+      _AnimatedWidgettState createState() => _AnimatedWidgettState();
+    }
+    
+    class _AnimatedWidgettState extends State<AnimatedWidgett> with SingleTickerProviderStateMixin {
+      AnimationController _controller;
+    
+      @override
+      void initState() {
+        _controller = AnimationController(
+          duration: Duration(seconds: 2),
+          vsync: this,
+          lowerBound: 1,
+          upperBound: 12,
+        )..repeat(reverse: true);
+        super.initState();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'AnimatedWidget Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.animatedWidgetCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ///We pass the controller for width and controller params
+                ///The width one will be used to get the value and will act
+                ///as a listenable for the Animated Widget
+                ButtonTransition(width: _controller, controller: _controller),
+              ],
+            ),
+          ),
+        );
+      }
+    
+      @override
+      void dispose() {
+        _controller.dispose();
+        super.dispose();
+      }
+    }
+    
+    class ButtonTransition extends AnimatedWidget {
+      ///We make a getter for the Animation value and use the listenable
+      ///to do just that
+      Animation<double> get _width => listenable;
+    
+      final AnimationController controller;
+    
+      const ButtonTransition({width, this.controller}) : super(listenable: width);
+    
+      @override
+      Widget build(BuildContext context) {
+        return OutlineButton(
+          onPressed: () {
+            controller.isAnimating ? controller.stop() : controller.repeat(reverse: true);
+          },
+          borderSide: BorderSide(
+            width: _width.value,
+          ),
+          child: Container(
+            height: 50,
+            width: 80,
+            child: Center(
+              child: Text("Click Me!"),
+            ),
+          ),
+        );
+      }
+    }''';
+
+  static const String paddingCode = ''' 
+    class PaddingWidget extends StatefulWidget {
+      @override
+      _PaddingWidgetState createState() => _PaddingWidgetState();
+    }
+    
+    class _PaddingWidgetState extends State<PaddingWidget> with SingleTickerProviderStateMixin {
+      AnimationController _controller;
+    
+      bool isPadding = false;
+    
+      @override
+      void initState() {
+        ///Here lowerBound and upperBound is the value of padding
+        _controller = AnimationController(
+          vsync: this,
+          lowerBound: 0,
+          upperBound: 48,
+          duration: Duration(seconds: 2),
+        );
+    
+        super.initState();
+      }
+    
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              'Padding Widget',
+              style: TextStyle(
+                  fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: Utils.ubuntuRegularFont),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.code),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CodeScreen(code: Code.paddingCode),
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: AnimatedBuilder(
+            animation: _controller,
+            builder: (BuildContext context, Widget child) {
+              return Column(
+                children: <Widget>[
+                  FlexContainer(color: Colors.yellow, padding: _controller.value),
+                  Flexible(
+                    child: Row(
+                      children: <Widget>[
+                        FlexContainer(color: Colors.green, padding: _controller.value),
+                        FlexContainer(color: Colors.blue, padding: _controller.value),
+                        FlexContainer(color: Colors.green, padding: _controller.value),
+                      ],
+                    ),
+                  ),
+                  FlexContainer(color: Colors.red, padding: _controller.value),
+                ],
+              );
+            },
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.blue,
+            onPressed: () {
+              _controller.value == 0 ? _controller.forward() : _controller.reverse();
+              setState(() {
+                isPadding ? isPadding = false : isPadding = true;
+              });
+            },
+            label: isPadding ? Text("Remove padding") : Text("Add padding"),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        );
+      }
+    
+      @override
+      void dispose() {
+        _controller.dispose();
+        super.dispose();
+      }
+    }
+    
+    class FlexContainer extends StatelessWidget {
+      final color;
+      final double padding;
+    
+      const FlexContainer({Key key, this.color, this.padding}) : super(key: key);
+    
+      @override
+      Widget build(BuildContext context) {
+        return Flexible(
+          child: Padding(
+            padding: EdgeInsets.all(padding),
+            child: Container(
+              color: color,
+            ),
+          ),
+        );
+      }
+    }''';
 }

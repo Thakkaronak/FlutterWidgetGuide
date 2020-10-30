@@ -24,13 +24,9 @@ class Utils {
 
   ///Method to get a random color
   static getRandomColor() =>
-      Color((math.Random().nextDouble() * 0xFFFFFF).toInt() << 0)
-          .withOpacity(1.0);
+      Color((math.Random().nextDouble() * 0xFFFFFF).toInt() << 0).withOpacity(1.0);
 
-  static List<Color> buttonGradient = [
-    Colors.cyan.shade600,
-    Colors.blue.shade600
-  ];
+  static List<Color> buttonGradient = [Colors.cyan.shade600, Colors.blue.shade600];
 
   //routes
   static const String codeRoute = "/code";
@@ -85,6 +81,44 @@ class Utils {
   static const String animatedPositioned = "/AnimatedPositioned";
   static const String animatedPadding = "/AnimatedPadding";
   static const String indexedStack = "/IndexedStack";
+  static const String semantics = "/Semantics";
+  static const String constrainedBox = "/ConstrainedBox";
+  static const String stack = "/Stack";
+  static const String animatedOpacity = "/AnimatedOpacity";
+  static const String fractionallySizedBox = "/FractionallySizedBox";
+  static const String listView = "/ListView";
+  static const String listTile = "/ListTile";
+  static const String container = "/Container";
+  static const String selectableText = "/SelectableText";
+  static const String dataTable = "/DataTable";
+  static const String slider = "/Slider";
+  static const String alertDialog = "/AlertDialog";
+  static const String animatedCrossFade = "/AnimatedCrossFade";
+  static const String draggableScrollableSheet = "/DraggableScrollableSheet";
+  static const String colorFiltered = "/ColorFiltered";
+  static const String toggleButtons = "/ToggleButtons";
+  static const String cupertinoActionSheet = "/CupertinoActionSheet";
+  static const String tweenAnimationBuilder = "/TweenAnimationBuilder";
+  static const String image = "/Image";
+  static const String tabs = "/Tabs";
+  static const String drawer = "/Drawer";
+  static const String snackBar = "/SnackBar";
+  static const String listWheelScrollView = "/ListWheelScrollView";
+  static const String shaderMask = "/ShaderMask";
+  static const String notificationListener = "/NotificationListener";
+  static const String builder = "/Builder";
+  static const String clipPath = "/ClipPath";
+  static const String circularProgressIndicator = "/ProgressIndicator";
+  static const String divider = "/Divider";
+  static const String ignorePointer = "/IgnorePointer";
+  static const String cupertinoActivityIndicator = "/CupertinoActivityIndicator";
+  static const String clipOval = "/ClipOval";
+  static const String animatedWidget = "/AnimatedWidget";
+  static const String padding = "/Padding";
+
+  static const String rateApp = "/Rate the App";
+  static const String slack_invite =
+      "https://join.slack.com/t/flutter-worldwide/shared_invite/enQtNzMyMjM3Nzc2Njc0LTdmYWI5ZGU5YjgxNjliYzhjZTU0MWNkZTA5MjY4ZmJiMjg4ZGQ2ZDQwNDdiOTdiOWVkZDA2NjY5YjllMGQ1M2M";
 
   //strings
   static const String appName = "Flutter Widget Guide";
@@ -214,33 +248,105 @@ class Utils {
   static const String richTextDescription =
       "Do you want to show a line or paragraph that combines multiple styles? The RichText widget allows you to style your text. "
       "Whether you want to emphasize one word in bold and display another in a different color or font, RichText can help!";
-  static const String reorderableListViewDescription = "";
-  static const String animatedSwitcherDescription = "";
-  static const String animatedPositionedDescription = "";
-  static const String animatedPaddingDescription = "";
-  static const String indexedStackDescription = "";
+  static const String reorderableListViewDescription =
+      "The ReorderableListView widget presents a list of items that users can reorder just by dragging things where they want them to go. ";
+  static const String animatedSwitcherDescription =
+      "The AnimatedSwitcher widget allows you to switch between two or more widgets with an animation as you transition.";
+  static const String animatedPositionedDescription =
+      "AnimatedPositioned automatically transitions the child's position over a given duration whenever the given position changes. ";
+  static const String animatedPaddingDescription =
+      "AnimatedPadding is a great way to provide smooth buffers and spaces between widgets and screen borders."
+      "Use this to dynamically change the padding of the widget and have it animate between the two values.";
+  static const String indexedStackDescription =
+      "Want your users to easily switch between widgets in your app? IndexedStack has you covered! "
+      "Swap between widgets, without animation, and the state of the widgets is preserved. ";
+  static const String semanticsDescription =
+      "Flutter's Semantics widget can annotate an app's UI with information about the meaning of other widgets.";
+  static const String constrainedBoxDescription =
+      "Flutter's ConstrainedBox widget is great to add requirements for a widget's sizing behavior. "
+      "Wrapping widgets in a ConstrainedBox lets you specify their min and max width and heights.";
+  static const String stackDescription =
+      "Stack allows you to overlay multiple widgets on top of each other. For example, you can use a Stack to add text over an image.";
+  static const String animatedOpacityDescription =
+      "Want to change how visible a widget is with a nice animation? AnimatedOpacity can help by fading a widget into view or by making it less prominent when something is not selected";
+  static const String fractionallySizedBoxDescription =
+      "Sometimes your design calls for dimensions that are relative. FractionallySizedBox allows you to size the child to a fraction of the total available space.";
+  static const String listViewDescription =
+      "Want a set of items to be viewable in a scrollable list? ListView is as simple as supplying a list of items and can be easily customized to your liking.";
+  static const String listTileDescription =
+      "Why spend hours working out the perfect item layout with rows, columns, containers, and various amounts of spacing and styling when you could just use a ListTile! ListTile implements the material design pattern for list items for you, leaving you to just worry about what goes in it.";
+  static const String containerDescription =
+      "Do you have a widget that needs some styling like background color, shape, or some size constraints? Try wrapping it in a Container widget! The Container widget helps you compose, decorate, and position child widgets.";
+  static const String selectableTextDescription =
+      "Have you ever wanted to make some display text in your app selectable? SelectableText is the widget for you!";
+  static const String dataTableDescription =
+      "Do you have some important data to show to the user in a table? Define your columns, rows, and automatically size cells with DataTable!";
+  static const String sliderDescription =
+      "Need a quick way to select from a range of values? The Slider widget selects a single value from a range. ";
+  static const String alertDialogDescription =
+      "Do you want to alert someone about something or maybe get their input? Does your app have a critical junction where users need to make an important decision? AlertDialog is the widget for you!";
+  static const String animatedCrossFadeDescription =
+      "Cross fade is a cinematic term in which one thing gradually fades into another. Wouldn't it be useful to have something similar, but for Flutter widgets? AnimatedCrossFade to the rescue!";
+  static const String draggableScrollableSheetDescription =
+      "Are you looking to drag a widget onto the screen? Does that widget have scrollable content? DraggableScrollableSheet has you covered!";
+  static const String colorFilteredDescription =
+      "It's easy to play around with color in Flutter widgets, and not just by modifying a color parameter. ColorFiltered widget will let you change and morph colors in weird and wonderful ways!";
+  static const String toggleButtonsDescription =
+      "Do you want to let your users select from a number of related options? Adding ToggleButtons to your app can help!  ";
+  static const String cupertinoActionSheetDescription =
+      "Are you building an iOS-style app that needs to present the user with a list of options for what to do next? CupertinoActionSheet is the widget for you!";
+  static const String tweenAnimationBuilderDescription =
+      "Do you want a simple animation, but none of the built-in implicit animation widgets do the trick? TweenAnimationBuilder is here for all your custom animation needs without having to worry about that AnimationController!";
+  static const String imageDescription =
+      "Need your app to display images? Flutter has you covered! Use the Image widget to render an image to the screen, wherever it may come from: assets, network, file system, RAM and more!";
+  static const String tabsDescription =
+      "Do you need to organize your widgets into tabs? The DefaultTabController, TabBar, and TabBarView widgets are for you.";
+  static const String drawerDescription =
+      "Need to provide navigation to other pages? Try using a Drawer!";
+  static const String snackBarDescription =
+      "Ever wanted to show a quick message in your app? Then SnackBar is for you! SnackBar lets you pop up a message for a few seconds at the bottom of your app.";
+  static const String listWheelScrollViewDescription =
+      "ListViews let the user see or choose from a number of items that wouldn't normally fit on the screen, but sometimes, an ordinary ListView is too flat and boring. Fortunately, there's ListWheelScrollView";
+  static const String shaderMaskDescription =
+      "ShaderMasks are one of Flutter’s hidden gems! ShaderMasks let you apply a shader to one or more widgets in the tree. There’s tons of cool effects you can achieve with shaders.";
+  static const String notificationListenerDescription =
+      "Use this widget to dispatch notifications? For instance, Scrollable widgets like ListView dispatch scroll notifications. Use NotificationListener to handle them!";
+  static const String builderDescription =
+      "Most of the time, widgets in Flutter build without looking up any extra information about their parents. Sometimes, you might write some code where the child widget needs to access the build context of a parent widget in the same build method. That's what the Builder widget is for!";
+  static const String clipPathDescription =
+      "Do you want your widget to have a unique shape? ClipPath allows you to define your own widget shapes! Given a CustomerClipper and a path that you define, ClipPath will constrain the widget's visible area to within this path.";
+  static const String circularProgressIndicatorDescription =
+      "Use CircularProgressIndicator if you want to indicate progress in a roundabout fashion and LinearProgressIndicator if you like lines";
+  static const String dividerDescription =
+      "The Divider widget is useful wherever you have widgets or groups of widgets that need to be separated";
+  static const String ignorePointerDescription =
+      "It can be useful to prevent the user from interacting with parts of your app. When the UI changes under users' fingers, that's actually a pretty common and frustrating problem. You could address this problem by disabling all interactive elements in your app, one by one, or you could use IgnorePointer.";
+  static const String cupertinoActivityIndicatorDescription =
+      "If you are using Cupertino widgets for your UI and your app needs a loading indicator, then CupertinoActivityIndicator is the widget for you!";
+  static const String clipOvalDescription =
+      "Sometimes, a picture or some other part of your screen can look too box-ish. The ClipOval widget can clip its children to round circles and ovals. Use this widget and think outside the box!";
+  static const String animatedWidgetDescription =
+      "There are many different options for animations. In many cases, an AnimatedWidget is all you need to make a widget animated.";
+  static const String paddingDescription =
+      "In an app with lots of widgets, things often get crowded. By using the Padding widget, you can add some space on any or all sides of a widget! ";
+
+  static const String rateAppDescription = ".";
 
   //official urls
-  static const String safeAreaURL =
-      "https://api.flutter.dev/flutter/widgets/SafeArea-class.html";
-  static const String expandedURL =
-      "https://api.flutter.dev/flutter/widgets/Expanded-class.html";
-  static const String wrapURL =
-      "https://api.flutter.dev/flutter/widgets/Wrap-class.html";
+  static const String safeAreaURL = "https://api.flutter.dev/flutter/widgets/SafeArea-class.html";
+  static const String expandedURL = "https://api.flutter.dev/flutter/widgets/Expanded-class.html";
+  static const String wrapURL = "https://api.flutter.dev/flutter/widgets/Wrap-class.html";
   static const String animatedContainerURL =
       "https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html";
-  static const String opacityURL =
-      "https://api.flutter.dev/flutter/widgets/Opacity-class.html";
+  static const String opacityURL = "https://api.flutter.dev/flutter/widgets/Opacity-class.html";
   static const String futureBuilderURL =
       "https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html";
   static const String fadeTransitionURL =
       "https://api.flutter.dev/flutter/widgets/FadeTransition-class.html";
   static const String floatingActionButtonURL =
       "https://api.flutter.dev/flutter/material/FloatingActionButton-class.html";
-  static const String pageViewURL =
-      "https://api.flutter.dev/flutter/widgets/PageView-class.html";
-  static const String tableURL =
-      "https://api.flutter.dev/flutter/widgets/Table-class.html";
+  static const String pageViewURL = "https://api.flutter.dev/flutter/widgets/PageView-class.html";
+  static const String tableURL = "https://api.flutter.dev/flutter/widgets/Table-class.html";
   static const String sliverAppBarURL =
       "https://api.flutter.dev/flutter/material/SliverAppBar-class.html";
   static const String sliverListURL =
@@ -253,46 +359,36 @@ class Utils {
       "https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html";
   static const String inheritedModelURL =
       "https://api.flutter.dev/flutter/widgets/InheritedModel-class.html";
-  static const String clipRRectURL =
-      "https://api.flutter.dev/flutter/widgets/ClipRRect-class.html";
-  static const String heroURL =
-      "https://api.flutter.dev/flutter/widgets/Hero-class.html";
+  static const String clipRRectURL = "https://api.flutter.dev/flutter/widgets/ClipRRect-class.html";
+  static const String heroURL = "https://api.flutter.dev/flutter/widgets/Hero-class.html";
   static const String customPaintURL =
       "https://api.flutter.dev/flutter/widgets/CustomPaint-class.html";
-  static const String tooltipURL =
-      "https://api.flutter.dev/flutter/material/Tooltip-class.html";
-  static const String fittedBoxURL =
-      "https://api.flutter.dev/flutter/widgets/FittedBox-class.html";
+  static const String tooltipURL = "https://api.flutter.dev/flutter/material/Tooltip-class.html";
+  static const String fittedBoxURL = "https://api.flutter.dev/flutter/widgets/FittedBox-class.html";
   static const String layoutBuilderURL =
       "https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html";
   static const String absorbPointerURL =
       "https://api.flutter.dev/flutter/widgets/AbsorbPointer-class.html";
-  static const String transformURL =
-      "https://api.flutter.dev/flutter/widgets/Transform-class.html";
+  static const String transformURL = "https://api.flutter.dev/flutter/widgets/Transform-class.html";
   static const String backDropFilterURL =
       "https://api.flutter.dev/flutter/widgets/BackdropFilter-class.html";
-  static const String alignURL =
-      "https://api.flutter.dev/flutter/widgets/Align-class.html";
+  static const String alignURL = "https://api.flutter.dev/flutter/widgets/Align-class.html";
   static const String positionedURL =
       "https://api.flutter.dev/flutter/widgets/Positioned-class.html";
   static const String animatedBuilderURL =
       "https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html";
   static const String dismissibleURL =
       "https://api.flutter.dev/flutter/widgets/Dismissible-class.html";
-  static const String sizedBoxURL =
-      "https://api.flutter.dev/flutter/widgets/SizedBox-class.html";
+  static const String sizedBoxURL = "https://api.flutter.dev/flutter/widgets/SizedBox-class.html";
   static const String valueListenableBuilderURL =
       "https://api.flutter.dev/flutter/widgets/ValueListenableBuilder-class.html";
-  static const String draggableURL =
-      "https://api.flutter.dev/flutter/widgets/Draggable-class.html";
+  static const String draggableURL = "https://api.flutter.dev/flutter/widgets/Draggable-class.html";
   static const String animatedListURL =
       "https://api.flutter.dev/flutter/widgets/AnimatedList-class.html";
-  static const String flexibleURL =
-      "https://api.flutter.dev/flutter/widgets/Flexible-class.html";
+  static const String flexibleURL = "https://api.flutter.dev/flutter/widgets/Flexible-class.html";
   static const String mediaQueryURL =
       "https://api.flutter.dev/flutter/widgets/MediaQuery-class.html";
-  static const String spacerURL =
-      "https://api.flutter.dev/flutter/widgets/Spacer-class.html";
+  static const String spacerURL = "https://api.flutter.dev/flutter/widgets/Spacer-class.html";
   static const String inheritedWidgetURL =
       "https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html";
   static const String animatedIconURL =
@@ -303,8 +399,7 @@ class Utils {
       "https://api.flutter.dev/flutter/widgets/LimitedBox-class.html";
   static const String placeholderURL =
       "https://api.flutter.dev/flutter/widgets/Placeholder-class.html";
-  static const String richTextURL =
-      "https://api.flutter.dev/flutter/widgets/RichText-class.html";
+  static const String richTextURL = "https://api.flutter.dev/flutter/widgets/RichText-class.html";
   static const String reorderableListViewURL =
       "https://api.flutter.dev/flutter/widgets/ReorderableListView-class.html";
   static const String animatedSwitcherURL =
@@ -315,9 +410,66 @@ class Utils {
       "https://api.flutter.dev/flutter/widgets/AnimatedPadding-class.html";
   static const String indexedStackURL =
       "https://api.flutter.dev/flutter/widgets/IndexedStack-class.html";
+  static const String semanticsURL = "https://api.flutter.dev/flutter/widgets/Semantics-class.html";
+  static const String constrainedBoxURL =
+      "https://api.flutter.dev/flutter/widgets/ConstrainedBox-class.html";
+  static const String stackURL = "https://api.flutter.dev/flutter/widgets/Stack-class.html";
+  static const String animatedOpacityURL =
+      "https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html";
+  static const String fractionallySizedBoxURL =
+      "https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html";
+  static const String listViewURL = "https://api.flutter.dev/flutter/widgets/ListView-class.html";
+  static const String listTileURL = "https://api.flutter.dev/flutter/material/ListTile-class.html";
+  static const String containerURL = "https://api.flutter.dev/flutter/widgets/Container-class.html";
+  static const String selectableTextURL =
+      "https://api.flutter.dev/flutter/material/SelectableText-class.html";
+  static const String dataTableURL =
+      "https://api.flutter.dev/flutter/material/DataTable-class.html";
+  static const String sliderURL = "https://api.flutter.dev/flutter/material/Slider-class.html";
+  static const String alertDialogURL =
+      "https://api.flutter.dev/flutter/material/AlertDialog-class.html";
+  static const String animatedCrossFadeURL =
+      "https://api.flutter.dev/flutter/widgets/AnimatedCrossFade-class.html";
+  static const String draggableScrollableSheetURL =
+      "https://api.flutter.dev/flutter/widgets/DraggableScrollableSheet-class.html";
+  static const String colorFilteredURL =
+      "https://api.flutter.dev/flutter/widgets/ColorFiltered-class.html";
+  static const String toggleButtonsURL =
+      "https://api.flutter.dev/flutter/material/ToggleButtons-class.html";
+  static const String cupertinoActionSheetURL =
+      "https://api.flutter.dev/flutter/cupertino/CupertinoActionSheet-class.html";
+  static const String tweenAnimationBuilderURL =
+      "https://api.flutter.dev/flutter/widgets/TweenAnimationBuilder-class.html";
+  static const String imageURL = "https://api.flutter.dev/flutter/widgets/Image-class.html";
+  static const String tabsURL =
+      "https://api.flutter.dev/flutter/material/DefaultTabController-class.html";
+  static const String drawerURL = "https://api.flutter.dev/flutter/material/Drawer-class.html";
+  static const String snackBarURL = "https://api.flutter.dev/flutter/material/SnackBar-class.html";
+  static const String listWheelScrollViewURL =
+      "https://api.flutter.dev/flutter/widgets/ListWheelScrollView-class.html";
+  static const String shaderMaskURL =
+      "https://api.flutter.dev/flutter/widgets/ShaderMask-class.html";
+  static const String notificationListenerURL =
+      "https://api.flutter.dev/flutter/widgets/NotificationListener-class.html";
+  static const String builderURL = "https://api.flutter.dev/flutter/widgets/Builder-class.html";
+  static const String clipPathURL = "https://api.flutter.dev/flutter/widgets/ClipPath-class.html";
+  static const String circularProgressIndicatorURL =
+      "https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html";
+  static const String dividerURL = "https://api.flutter.dev/flutter/material/Divider-class.html";
+  static const String ignorePointerURL =
+      "https://api.flutter.dev/flutter/widgets/IgnorePointer-class.html";
+  static const String cupertinoActivityIndicatorURL =
+      "https://api.flutter.dev/flutter/cupertino/CupertinoActivityIndicator-class.html";
+  static const String clipOvalURL = "https://api.flutter.dev/flutter/widgets/ClipOval-class.html";
+  static const String animatedWidgetURL =
+      "https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html";
+  static const String paddingURL = "https://api.flutter.dev/flutter/widgets/Padding-class.html";
 
   static const String expandedSourceURL =
       "https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/expanded.dart";
+
+  static const String rateAppURL =
+      "https://play.google.com/store/apps/details?id=com.annsh.flutterwidgetguide";
 
   //video urls
   static const String safeAreaVideoUrl =
@@ -414,6 +566,76 @@ class Utils {
       "https://www.youtube.com/watch?v=PY2m0fhGNz4&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=46";
   static const String indexedStackVideoUrl =
       "https://www.youtube.com/watch?v=_O0PPD1Xfbk&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=47";
+  static const String semanticsVideoURL =
+      "https://www.youtube.com/watch?v=NvtMt_DtFrQ&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=48";
+  static const String constrainedBoxVideoURL =
+      "https://www.youtube.com/watch?v=o2KveVr7adg&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=49";
+  static const String stackVideoURL =
+      "https://www.youtube.com/watch?v=liEGSeD3Zt8&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=50";
+  static const String animatedOpacityVideoURL =
+      "https://www.youtube.com/watch?v=QZAvjqOqiLY&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=51";
+  static const String fractionallySizedBoxVideoURL =
+      "https://www.youtube.com/watch?v=PEsY654EGZ0&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=52";
+  static const String listViewVideoURL =
+      "https://www.youtube.com/watch?v=KJpkjHGiI5A&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=53";
+  static const String listTileVideoURL =
+      "https://www.youtube.com/watch?v=l8dj0yPBvgQ&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=54";
+  static const String containerVideoURL =
+      "https://www.youtube.com/watch?v=c1xLMaTUWCY&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=55";
+  static const String selectableTextVideoURL =
+      "https://www.youtube.com/watch?v=ZSU3ZXOs6hc&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=56";
+  static const String dataTableVideoURL =
+      "https://www.youtube.com/watch?v=ktTajqbhIcY&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=57";
+  static const String sliderVideoURL =
+      "https://www.youtube.com/watch?v=ufb4gIPDmEs&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=58";
+  static const String alertDialogVideoURL =
+      "https://www.youtube.com/watch?v=75CsnyRXf5I&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=59";
+  static const String animatedCrossFadeVideoURL =
+      "https://www.youtube.com/watch?v=PGK2UUAyE54&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=60";
+  static const String draggableScrollableSheetVideoURL =
+      "https://www.youtube.com/watch?v=Hgw819mL_78&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=61";
+  static const String colorFilteredVideoURL =
+      "https://www.youtube.com/watch?v=F7Cll22Dno8&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=62";
+  static const String toggleButtonsVideoURL =
+      "https://www.youtube.com/watch?v=kVEguaQWGAY&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=63";
+  static const String cupertinoActionSheetVideoURL =
+      "https://www.youtube.com/watch?v=U-ao8p4A82k&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=64";
+  static const String tweenAnimationBuilderVideoURL =
+      "https://www.youtube.com/watch?v=l9uHB8VXZOg&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=65";
+  static const String imageVideoURL =
+      "https://www.youtube.com/watch?v=7oIAs-0G4mw&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=66";
+  static const String tabsVideoURL =
+      "https://www.youtube.com/watch?v=POtoEH-5l40&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=67";
+  static const String drawerVideoURL =
+      "https://www.youtube.com/watch?v=WRj86iHihgY&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=68";
+  static const String snackBarVideoURL =
+      "https://www.youtube.com/watch?v=zpO6n_oZWw0&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=69";
+  static const String listWheelScrollViewVideoURL =
+      "https://www.youtube.com/watch?v=dUhmWAz4C7Y&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=70";
+  static const String shaderMaskVideoURL =
+      "https://www.youtube.com/watch?v=7sUL66pTQ7Q&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=71";
+  static const String notificationListenerVideoURL =
+      "https://www.youtube.com/watch?v=cAnFbFoGM50&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=72";
+  static const String builderVideoURL =
+      "https://www.youtube.com/watch?v=xXNOkIuSYuA&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=73";
+  static const String clipPathVideoURL =
+      "https://www.youtube.com/watch?v=oAUebVIb-7s&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=74";
+  static const String circularProgressIndicatorVideoURL =
+      "https://www.youtube.com/watch?v=O-rhXZLtpv0&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=75";
+  static const String dividerVideoURL =
+      "https://www.youtube.com/watch?v=_liUC641Nmk&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=76";
+  static const String ignorePointerVideoURL =
+      "https://www.youtube.com/watch?v=qV9pqHWxYgI&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=77";
+  static const String cupertinoActivityIndicatorVideoURL =
+      "https://www.youtube.com/watch?v=AENVH-ZqKDQ&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=78";
+  static const String clipOvalVideoURL =
+      "https://www.youtube.com/watch?v=vzWWDO6whIM&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=79";
+  static const String animatedWidgetVideoURL =
+      "https://www.youtube.com/watch?v=LKKgYpC-EPQ&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=80";
+  static const String paddingVideoURL =
+      "https://www.youtube.com/watch?v=oD5RtLhhubg&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG&index=81";
+
+  static const String rateAppVideoURL = ".";
 
   //medium urls
   static const String safeAreaMediumUrl =
@@ -444,10 +666,13 @@ class Utils {
       "https://medium.com/flutter-community/flutter-widget-guide-slivergrid-widget-in-5-mins-or-less-e6a95d6c4e76";
   static const String fadeInImageMediumUrl =
       "https://medium.com/flutter-community/flutter-widget-guide-fadeinimage-widget-in-5-mins-or-less-2659a9aa5bfd";
-  static const String streamBuilderMediumUrl = "";
-  static const String inheritedModelMediumUrl = "";
+  static const String streamBuilderMediumUrl =
+      "https://medium.com/flutter-community/flutter-widget-guide-streambuilder-widget-in-5-mins-or-less-9f6a34f7ed2f";
+  static const String inheritedModelMediumUrl =
+      "https://medium.com/@annsh/flutter-widget-guide-inheritedmodel-widget-in-5-mins-or-less-a2b0dd8beb43";
   static const String clipRrectMediumUrl = "";
-  static const String heroMediumUrl = "";
+  static const String heroMediumUrl =
+      "https://medium.com/flutter-community/flutter-widget-guide-hero-widget-in-5-mins-or-less-3a8d0b479d4a";
   static const String customPaintMediumUrl = "";
   static const String toolTipMediumUrl = "";
   static const String fittedBoxMediumUrl = "";
@@ -477,9 +702,46 @@ class Utils {
   static const String animatedPositionedMediumUrl = "";
   static const String animatedPaddingMediumUrl = "";
   static const String indexedStackMediumUrl = "";
+  static const String semanticsMediumURL = "";
+  static const String constrainedBoxMediumURL = "";
+  static const String stackMediumURL = "";
+  static const String animatedOpacityMediumURL = "";
+  static const String fractionallySizedBoxMediumURL = "";
+  static const String listViewMediumURL = "";
+  static const String listTileMediumURL = "";
+  static const String containerMediumURL = "";
+  static const String selectableTextMediumURL = "";
+  static const String dataTableMediumURL = "";
+  static const String sliderMediumURL = "";
+  static const String alertDialogMediumURL = "";
+  static const String animatedCrossFadeMediumURL = "";
+  static const String draggableScrollableSheetMediumURL = "";
+  static const String colorFilteredMediumURL = "";
+  static const String toggleButtonsMediumURL = "";
+  static const String cupertinoActionSheetMediumURL = "";
+  static const String tweenAnimationBuilderMediumURL = "";
+  static const String imageMediumURL = "";
+  static const String tabsMediumURL = "";
+  static const String drawerMediumURL = "";
+  static const String snackBarMediumURL = "";
+  static const String listWheelScrollViewMediumURL = "";
+  static const String shaderMaskMediumURL = "";
+  static const String notificationListenerMediumURL = "";
+  static const String builderMediumURL = "";
+  static const String clipPathMediumURL = "";
+  static const String circularProgressIndicatorMediumURL = "";
+  static const String dividerMediumURL = "";
+  static const String ignorePointerMediumURL = "";
+  static const String cupertinoActivityIndicatorMediumURL = "";
+  static const String clipOvalMediumURL = "";
+  static const String animatedWidgetMediumURL = "";
+  static const String paddingMediumURL = "";
+
+  static const String rateAppMediumURL = ".";
 
   //images
   static const String imageDir = "assets/images";
   static const String expanded_img = "$imageDir/expanded_info.svg";
   static const String medium_img = "$imageDir/medium_icon.svg";
+  static const String slack_img = "$imageDir/slack_icon.svg";
 }

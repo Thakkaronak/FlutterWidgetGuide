@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -12,12 +13,20 @@ class PageViewWidget extends StatefulWidget {
 class _PageViewWidgetState extends State<PageViewWidget> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>();
+
   ///Page Controller for the PageView
   final controller = PageController(
     initialPage: 0,
   );
   var scrollDirection = Axis.horizontal;
   var actionIcon = Icons.swap_vert;
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +36,12 @@ class _PageViewWidgetState extends State<PageViewWidget> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-            'Page View Widget',
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-                fontFamily: Utils.ubuntuRegularFont),
-          ),
+          'Page View Widget',
+          style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: Utils.ubuntuRegularFont),
+        ),
         actions: <Widget>[
           IconButton(
               icon: Icon(actionIcon),
@@ -46,7 +55,8 @@ class _PageViewWidgetState extends State<PageViewWidget> {
                       : actionIcon = Icons.swap_vert;
                   _scaffoldKey.currentState.showSnackBar(
                     SnackBar(
-                      content: Text("Scroll Direction changed to $scrollDirection"),
+                      content:
+                          Text("Scroll Direction changed to $scrollDirection"),
                       duration: Duration(milliseconds: 1000),
                     ),
                   );
@@ -67,10 +77,12 @@ class _PageViewWidgetState extends State<PageViewWidget> {
           )
         ],
       ),
+
       ///A Page View with 3 children
       body: PageView(
         controller: controller,
         scrollDirection: scrollDirection,
+
         ///Enable physics property to provide your PageView with a
         ///custom scroll behaviour
         ///Here BouncingScrollPhysics will pull back the boundary
@@ -79,7 +91,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
         pageSnapping: true,
         children: <Widget>[
           Container(
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
             child: Card(
               color: Colors.lightBlue,
               elevation: 4,
@@ -96,7 +108,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
             ),
           ),
           Container(
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
             child: Card(
               color: Colors.purpleAccent,
               elevation: 4,
@@ -113,7 +125,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
             ),
           ),
           Container(
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
             child: Card(
               color: Colors.pink,
               elevation: 4,

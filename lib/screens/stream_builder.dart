@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -15,6 +16,13 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
   var counterStream = Stream<double>.periodic(
       Duration(milliseconds: 100), (x) => (x * 2).toDouble()).take(101);
   bool _isButtonClicked = false;
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +40,11 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
           IconButton(
             icon: Icon(Icons.code),
             onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        CodeScreen(code: Code.streamBuilderCode),
-                  ),
-                ),
+              context,
+              MaterialPageRoute(
+                builder: (context) => CodeScreen(code: Code.streamBuilderCode),
+              ),
+            ),
           )
         ],
       ),
@@ -75,7 +82,9 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                           child: Text(
                             "Height: ${snapshot.data}",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
+                            style: TextStyle(
+                                color: Theme.of(context).backgroundColor,
+                                fontSize: 18),
                           ),
                         ),
                         Container(
@@ -83,7 +92,9 @@ class _StreamBuilderWidgetState extends State<StreamBuilderWidget> {
                           child: Text(
                             "Width: ${snapshot.data}",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black, fontSize: 18),
+                            style: TextStyle(
+                                color: Theme.of(context).backgroundColor,
+                                fontSize: 18),
                           ),
                         )
                       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -10,6 +11,14 @@ class LimitedBoxWidget extends StatefulWidget {
 }
 
 class _LimitedBoxWidgetState extends State<LimitedBoxWidget> {
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,15 +62,18 @@ Widget portraitLayout(context) => ListView(
           child: Container(
             color: Colors.amber,
             child: Center(
-              child: Text(
-                "I am wrapped inside a Limited Box with maxHeight set to 200\n"
-                    "This is necessary as my parent (ListView) is unconstrained\n"
-                    "Flip screen to see the other case",
-                style: TextStyle(color: Colors.black),
-                textAlign: TextAlign.center,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "I am wrapped inside a Limited Box with maxHeight set to 200\n"
+                  "This is necessary as my parent (ListView) is unconstrained\n"
+                  "Flip screen to see the other case",
+                  style: TextStyle(color: Colors.black),
+                  textAlign: TextAlign.center,
+                ),
               ),
+            ),
           ),
-        ),
         ),
       ],
     );
@@ -73,12 +85,15 @@ Widget landscapeLayout(context) => Container(
         child: Container(
           color: Colors.amber,
           child: Center(
-            child: Text(
-              "I am wrapped inside a Limited Box with maxWidth set to 20\n"
-              "But as my parent (Container) is already constrained, LimitedBox is respecting\n"
-              "those constrains.",
-              style: TextStyle(color: Colors.black),
-              textAlign: TextAlign.center,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "I am wrapped inside a Limited Box with maxWidth set to 20\n"
+                "But as my parent (Container) is already constrained, LimitedBox is respecting\n"
+                "those constrains.",
+                style: TextStyle(color: Colors.black),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),

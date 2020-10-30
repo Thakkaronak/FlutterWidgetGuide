@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -13,17 +14,25 @@ class _ClipRRectWidgetState extends State<ClipRRectWidget> {
   var _value = 50.0;
 
   @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-              'ClipRRect Widget',
-              style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: Utils.ubuntuRegularFont),
-            ),
+          'ClipRRect Widget',
+          style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: Utils.ubuntuRegularFont),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.code),
@@ -76,7 +85,7 @@ class _ClipRRectWidgetState extends State<ClipRRectWidget> {
                     padding: EdgeInsets.all(12),
                     child: Text(
                       'Slide the slider widget to change the value of radius\n'
-                          'to observe changes on borders of the widget below',
+                      'to observe changes on borders of the widget below',
                       style: TextStyle(
                           color: Colors.grey[400],
                           fontSize: 14.0,

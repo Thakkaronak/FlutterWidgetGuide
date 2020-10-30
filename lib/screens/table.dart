@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -12,6 +13,13 @@ class TableWidget extends StatefulWidget {
 class _TableWidgetState extends State<TableWidget> {
   bool _isBorderEnabled = false;
   var _actionIcon = Icons.border_all;
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +39,14 @@ class _TableWidgetState extends State<TableWidget> {
           IconButton(
             icon: Icon(_actionIcon),
             onPressed: () => setState(() {
-                  _isBorderEnabled == false
-                      ? _isBorderEnabled = true
-                      : _isBorderEnabled = false;
+              _isBorderEnabled == false
+                  ? _isBorderEnabled = true
+                  : _isBorderEnabled = false;
 
-                  _isBorderEnabled
-                      ? _actionIcon = Icons.border_clear
-                      : _actionIcon = Icons.border_all;
-                }),
+              _isBorderEnabled
+                  ? _actionIcon = Icons.border_clear
+                  : _actionIcon = Icons.border_all;
+            }),
           ),
           IconButton(
             icon: Icon(Icons.code),
@@ -54,7 +62,9 @@ class _TableWidgetState extends State<TableWidget> {
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 12),
         child: Table(
-          border: _isBorderEnabled ? TableBorder.all() : null,
+          border: _isBorderEnabled
+              ? TableBorder.all(color: Theme.of(context).backgroundColor)
+              : null,
           defaultVerticalAlignment: TableCellVerticalAlignment.top,
           children: <TableRow>[
             ///First table row with 3 children
@@ -117,6 +127,7 @@ class _TableWidgetState extends State<TableWidget> {
                 ),
               ),
             ]),
+
             ///Second table row with 3 children
             TableRow(children: <Widget>[
               FittedBox(

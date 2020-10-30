@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -20,6 +21,13 @@ class _OpacityWidgetState extends State<OpacityWidget> {
   var _textColor = Colors.white;
 
   @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -35,11 +43,11 @@ class _OpacityWidgetState extends State<OpacityWidget> {
           IconButton(
             icon: Icon(Icons.code),
             onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CodeScreen(code: Code.opacityCode),
-                  ),
-                ),
+              context,
+              MaterialPageRoute(
+                builder: (context) => CodeScreen(code: Code.opacityCode),
+              ),
+            ),
           )
         ],
       ),
@@ -54,7 +62,7 @@ class _OpacityWidgetState extends State<OpacityWidget> {
                   child: Text(
                     'Without Animation',
                     style: TextStyle(
-                        color: Colors.black87,
+                        color: Theme.of(context).backgroundColor,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         fontFamily: Utils.ubuntuRegularFont),
@@ -147,7 +155,7 @@ class _OpacityWidgetState extends State<OpacityWidget> {
                   child: Text(
                     'With Animation',
                     style: TextStyle(
-                        color: Colors.black87,
+                        color: Theme.of(context).backgroundColor,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         fontFamily: Utils.ubuntuRegularFont),
@@ -193,10 +201,10 @@ class _OpacityWidgetState extends State<OpacityWidget> {
                     ),
                   ),
                   onTap: () => setState(() {
-                        _animOpacityValue == 1.0
-                            ? _animOpacityValue = 0.0
-                            : _animOpacityValue = 1.0;
-                      }),
+                    _animOpacityValue == 1.0
+                        ? _animOpacityValue = 0.0
+                        : _animOpacityValue = 1.0;
+                  }),
                 ),
               ],
             ),

@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
+import '../Code.dart';
+import '../CodeScreen.dart';
+
 class AnimatedPaddingWidget extends StatefulWidget {
   @override
   _AnimatedPaddingWidgetState createState() => _AnimatedPaddingWidgetState();
 }
 
 class _AnimatedPaddingWidgetState extends State<AnimatedPaddingWidget> {
+  double padValue = 0;
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,21 +32,45 @@ class _AnimatedPaddingWidgetState extends State<AnimatedPaddingWidget> {
               fontWeight: FontWeight.bold,
               fontFamily: Utils.ubuntuRegularFont),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.code),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    CodeScreen(code: Code.animatedPaddingCode),
+              ),
+            ),
+          )
+        ],
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Container(
-            color: Colors.white,
-            child: Text(
-              "This widget will be added soon",
-              style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: Utils.ubuntuRegularFont),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            AnimatedPadding(
+              padding: EdgeInsets.all(padValue),
+              duration: Duration(seconds: 1),
+              child: Container(height: 150, width: 150, color: Colors.blue),
             ),
-          ),
+            AnimatedPadding(
+              padding: EdgeInsets.all(padValue),
+              duration: Duration(seconds: 1),
+              child: Container(height: 150, width: 150, color: Colors.red),
+            )
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.green,
+        onPressed: () => setState(() {
+          padValue == 0 ? padValue = 10 : padValue = 0;
+        }),
+        label: Text(
+          padValue == 0 ? "Add Padding" : "Remove Padding",
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

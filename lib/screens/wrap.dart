@@ -3,6 +3,8 @@ import 'package:flutter_widget_guide/Code.dart';
 import 'package:flutter_widget_guide/CodeScreen.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
+
 class WrapWidget extends StatefulWidget {
   @override
   _WrapWidgetState createState() => _WrapWidgetState();
@@ -10,6 +12,13 @@ class WrapWidget extends StatefulWidget {
 
 class _WrapWidgetState extends State<WrapWidget> {
   BuildContext context; //global context
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +37,11 @@ class _WrapWidgetState extends State<WrapWidget> {
           IconButton(
             icon: Icon(Icons.code),
             onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CodeScreen(code: Code.wrapCode),
-                  ),
-                ),
+              context,
+              MaterialPageRoute(
+                builder: (context) => CodeScreen(code: Code.wrapCode),
+              ),
+            ),
           )
         ],
       ),
@@ -48,7 +57,7 @@ class _WrapWidgetState extends State<WrapWidget> {
                       Text(
                         'Without Wrap widget',
                         style: TextStyle(
-                            color: Colors.black87,
+                            color: Theme.of(context).backgroundColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: Utils.ubuntuRegularFont),
@@ -97,7 +106,7 @@ class _WrapWidgetState extends State<WrapWidget> {
                       Text(
                         'With Wrap widget',
                         style: TextStyle(
-                            color: Colors.black87,
+                            color: Theme.of(context).backgroundColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: Utils.ubuntuRegularFont),

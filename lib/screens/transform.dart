@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_guide/utils.dart';
 
+import '../Ads.dart';
 import '../Code.dart';
 import '../CodeScreen.dart';
 
@@ -13,6 +14,13 @@ class _TransformWidgetState extends State<TransformWidget> {
   var _scale = 1.0;
   var _angle = 0.0;
   var _xValue = 0.0;
+
+  @override
+  void initState() {
+    //Hide banner ad if it isn't already hidden
+    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +91,7 @@ class _TransformWidgetState extends State<TransformWidget> {
                 margin: EdgeInsets.all(12),
                 child: Text(
                   'Drag the slider above to change the scale.\nObserve how the'
-                               'size of the widget varies',
+                  'size of the widget varies',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey[400],
@@ -125,12 +133,11 @@ class _TransformWidgetState extends State<TransformWidget> {
                   });
                 },
               ),
-
               Container(
                 margin: EdgeInsets.all(12),
                 child: Text(
                   'Drag the slider above to change the angle.\nObserve how the'
-                                  'widget rotates',
+                  'widget rotates',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey[400],
@@ -139,7 +146,6 @@ class _TransformWidgetState extends State<TransformWidget> {
                       fontFamily: Utils.ubuntuRegularFont),
                 ),
               ),
-
               Transform.translate(
                 child: Container(
                   margin: EdgeInsets.all(12),
@@ -177,7 +183,7 @@ class _TransformWidgetState extends State<TransformWidget> {
                 margin: EdgeInsets.all(12),
                 child: Text(
                   'Drag the slider above to change the horizontal component [dx].\nObserve how the'
-                      'widget slides along the horizontal axis',
+                  'widget slides along the horizontal axis',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey[400],

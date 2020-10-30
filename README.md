@@ -12,6 +12,8 @@ Click on the image below to download
 
 <a href='https://play.google.com/store/apps/details?id=com.annsh.flutterwidgetguide&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="250"/></a>
 
+### ![slack](slack_logo.png) Want to Join the Slack Community? - [Send me an invite](https://join.slack.com/t/flutter-worldwide/shared_invite/enQtNzMyMjM3Nzc2Njc0LTdmYWI5ZGU5YjgxNjliYzhjZTU0MWNkZTA5MjY4ZmJiMjg4ZGQ2ZDQwNDdiOTdiOWVkZDA2NjY5YjllMGQ1M2M)
+ 
 ## About
 I created this project to improve my skills with dart and flutter as a development platform. I am used to developing native android apps so I'll be focusing on designing this project for android platform.</br> 
 This project might help you to learn about Flutter if you are a beginner in this space.</br>
@@ -19,6 +21,10 @@ My experience with flutter has been great thus far.</br>
 I hope you like it too.
 </br>The project is developed in [Dart](https://www.dartlang.org/) language.</br>
 All the files are listed in the [/lib](https://github.com/annshsingh/flutter-widget-guide/tree/master/lib) folder.</br>
+
+[![GitHub stars](https://img.shields.io/github/stars/annshsingh/FlutterWidgetGuide?style=social)](https://github.com/annshsingh/FlutterWidgetGuide) [![GitHub forks](https://img.shields.io/github/forks/annshsingh/FlutterWidgetGuide?style=social)](https://github.com/annshsingh/FlutterWidgetGuide/fork) [![GitHub watchers](https://img.shields.io/github/watchers/annshsingh/FlutterWidgetGuide?style=social&label=Watch)](https://github.com/annshsingh/FlutterWidgetGuide) [![GitHub followers](https://img.shields.io/github/followers/annshsingh?style=social&label=Follow)](https://github.com/annshsingh)
+[![Twitter Follow](https://img.shields.io/twitter/follow/annsh2013?style=social)](https://twitter.com/annsh2013)
+
 #### :star: the repo to show some :heart: and motivate me to work on the project :smiley:
 
 ## Widget List
@@ -36,10 +42,10 @@ All the files are listed in the [/lib](https://github.com/annshsingh/flutter-wid
    12. [Sliver List](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/sliver_list.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-sliverlist-widget-in-5-mins-or-less-d1215c677388)
    13. [Sliver Grid](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/sliver_grid.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-slivergrid-widget-in-5-mins-or-less-e6a95d6c4e76)
    14. [Fade In Image](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/fade_in_image.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-fadeinimage-widget-in-5-mins-or-less-2659a9aa5bfd)
-   15. [Stream Builder](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/stream_builder.dart)
-   16. [Inherited Model](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/inherited_model.dart)
+   15. [Stream Builder](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/stream_builder.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-streambuilder-widget-in-5-mins-or-less-9f6a34f7ed2f)
+   16. [Inherited Model](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/inherited_model.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-inheritedmodel-widget-in-5-mins-or-less-a2b0dd8beb43)
    17. [ClipRRect](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/clip_r_rect.dart)
-   18. [Hero](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/hero.dart)
+   18. [Hero](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/hero.dart) | [![read](medium_icon.png)](https://medium.com/flutter-community/flutter-widget-guide-hero-widget-in-5-mins-or-less-3a8d0b479d4a)
    19. [Custom Paint](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/custom_paint.dart)
    20. [Tooltip](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/tooltip.dart)
    21. [Fitted Box](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/fitted_box.dart)
@@ -64,11 +70,45 @@ All the files are listed in the [/lib](https://github.com/annshsingh/flutter-wid
    40. [LimitedBox](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/limited_box.dart)
    41. [Placeholder](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/placeholder.dart)
    42. [RichText](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/rich_text.dart)
-   43. [ReorderableListView](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/reorderable_listiew.dart) (coming soon)
-   44. [AnimatedSwitcher](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/animated_switcher.dart) (coming soon)
-   45. [AnimatedPositioned](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/animated_positioned.dart) (coming soon)
-   46. [AnimatedPadding](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/animated_padding.dart) (coming soon)
-   47. Semantics (coming soon)
+   43. [ReorderableListView](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/reorderable_listiew.dart)
+   44. [AnimatedSwitcher](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/animated_switcher.dart)
+   45. [AnimatedPositioned](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/animated_positioned.dart)
+   46. [AnimatedPadding](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/animated_padding.dart)
+   47. [Indexed Stack](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/indexed_stack.dart)
+   48. [Semantics](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/semantics_widget.dart)
+   49. [ConstrainedBox](https://github.com/annshsingh/flutter-widget-guide/blob/master/lib/screens/constrained_box.dart)
+   50. [Stack](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/stack_widget.dart)
+   51. [AnimatedOpacity](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/animated_opacity.dart)
+   52. [FractionallySizedBox](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/fractionally_sizedbox.dart)
+   53. [ListView](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/list_view.dart)
+   54. [ListTile](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/list_tile.dart)
+   55. [Container](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/container.dart)
+   56. [SelectableText](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/selectable_text.dart)
+   57. [DataTable](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/datatable_widget.dart)
+   58. [Slider](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/slider_widget.dart)
+   59. [AlertDialog](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/alert_dialog_widget.dart)
+   60. [AnimatedCrossFade](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/animated_crossfade_widget.dart)
+   61. [DraggableScrollableSheet](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/draggable_scrollable_sheet.dart)
+   62. [ColorFiltered](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/color_filtered.dart)
+   63. [ToggleButtons](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/toggle_buttons.dart)
+   64. [CupertinoActionSheet](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/cupertino_action_sheet.dart)
+   65. [TweenAnimationBuilder](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/tween_animation_builder.dart)
+   66. [Image](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/image_widget.dart)
+   67. [Tab View](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/tabs_widget.dart)
+   68. [Drawer](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/drawer_widget.dart)
+   69. [SnackBar](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/snackbar_widget.dart)
+   70. [ListWheelScrollView](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/listwheelscrollview_widget.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-listwheelscrollview-widget-in-5-mins-or-less-c1da452355d2)
+   71. [ShaderMask](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/shadermask_widget.dart) | [![read](medium_icon.png)](https://medium.com/@annsh/flutter-widget-guide-shadermask-widget-in-5-mins-or-less-ab9954f526c7)
+   72. [NotificationListener](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/notification_listener.dart)
+   73. [Builder](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/builder.dart)
+   74. [ClipPath](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/clip_path.dart)
+   75. [ProgressIndicator](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/circularProgressIndicator.dart)
+   76. [Divider](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/divider.dart)
+   77. [IgnorePointer](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/ignore_pointer.dart)
+   78. [CupertinoActivityIndicator](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/cupertino_activity_indicator.dart)
+   79. [ClipOval](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/clipoval.dart)
+   80. [AnimatedWidget](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/animated_widget.dart)
+   81. [Padding](https://github.com/annshsingh/FlutterWidgetGuide/blob/master/lib/screens/padding.dart)
    
 #### I'll try my best to keep the list in sync with the [Youtube Playlist](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) :thumbsup:
 
@@ -76,10 +116,14 @@ All the files are listed in the [/lib](https://github.com/annshsingh/flutter-wid
    1. Flutter webview implementation
    2. Youtube Video Player
    3. Firebase RemoteConfig
-   4. View Code inside the app.
+   4. Firebase Cloud Messaging
+   5. Firebase AdMob
+   6. View Code inside the app.
+   7. Copy code or part of code.
+   8. Dark Mode
    
 ## Things to work on in the Future
-   1. Save favourite widgets in "Favourites" section - Using SQFlite.
+   1. Save favourite widgets in "Favourites" section - Using SQFlite/Hive.
    2. Collection based view insted of a list - Change Home Page layout. 
    3. Search functionality in list - Add "Search" action on Home Page.
    4. Mark your favourite widget - Firebase cloudstore functionality.
@@ -89,6 +133,60 @@ All the files are listed in the [/lib](https://github.com/annshsingh/flutter-wid
 ## App Screenshots
 <img src="https://github.com/annshsingh/flutter-widget-guide/blob/master/Screen_1.png" alt="Screen1" width="153px" height="280px"><img src="https://github.com/annshsingh/flutter-widget-guide/blob/master/screen_2.png" alt="Screen2" width="153px" height="280px"><img src="https://github.com/annshsingh/flutter-widget-guide/blob/master/screen_4.png" alt="Screen4" width="153px" height="280px"><img src="https://github.com/annshsingh/flutter-widget-guide/blob/master/screen_3.png" alt="Screen3" width="320px" height="153px">
 </br>&nbsp; &nbsp; &nbsp;List of Widgets&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Explore a Widget&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; Widget Video&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Source Code
+
+## Building the project
+
+Some files might be missing from the project because of security reasons, as they contain key values.</br>
+These are the steps you need to follow to build the project successfully.
+
+### 1. Missing Key.Properties file
+Please follow the following steps:
+
+Step 1. Go to android > app > build.gradle</br>
+
+Now,</br>
+Comment this line **keystoreProperties.load(new FileInputStream(keystorePropertiesFile))**</br>
+Next,</br>Comment everything inside __signingConfigs and buildTypes__</br>
+It should look something like this - </br>
+
+```
+//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+signingConfigs {
+       // release {
+           // keyAlias keystoreProperties['keyAlias']
+           // keyPassword keystoreProperties['keyPassword']
+           //storeFile file(keystoreProperties['storeFile'])
+           // storePassword keystoreProperties['storePassword']
+       // }
+    }
+
+    buildTypes {
+       // release {
+           // TODO: Add your own signing config for the release build.
+           // Signing with the debug keys for now, so `flutter run --release` works.
+           // signingConfig signingConfigs.release
+           // minifyEnabled false
+           // shrinkResources false
+           // useProguard true
+           // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+       // }
+    }
+```
+</br>
+Step 2. Go to android > local.properties</br>
+Add following lines -
+
+```
+flutter.versionName=1.0.7
+flutter.versionCode=8
+flutter.buildMode=release
+```
+### 2. Missing google-services.json file
+
+This file is used to add firebase services to the project. You might want to add your own file, or better yet, comment the code inside the project to remove the implementation.
+Go to **home_page.dart** file and comment out the code for firebase remote config to remove this error.
+
 
 ## Learn more on Flutter
 [Official Flutter documentation](https://flutter.dev/docs)</br>

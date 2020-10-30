@@ -12,12 +12,12 @@ class HeroWidget extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-              'Hero Widget',
-              style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: Utils.ubuntuRegularFont),
-            ),
+          'Hero Widget',
+          style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: Utils.ubuntuRegularFont),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.code),
@@ -93,7 +93,7 @@ class HeroWidget extends StatelessWidget {
         onWillPop: () {
           ///Reset timeDilation since it is a Global property
           timeDilation = 1.0;
-          Navigator.of(context).pop(true);
+          return Future.value(true);
         },
       ),
     );
